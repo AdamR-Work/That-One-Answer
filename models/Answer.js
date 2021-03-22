@@ -1,5 +1,5 @@
 
-const {Model, Datatypes} = require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection')
 
 class Answer extends Model{};
@@ -29,7 +29,7 @@ Answer.init(
         }
       },
       category_id:{
-          type: Datatypes.STRING,
+          type: DataTypes.STRING,
           references:{
               model:'category',
               key:'id'
