@@ -1,4 +1,4 @@
-const {Model, Datatypes} = require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection')
 
 class Comments extends Model{};
@@ -15,7 +15,7 @@ Comments.init(
         allowNull: false
       },
       steps_id:{
-        type: Datatypes.INTEGER,
+        type: DataTypes.INTEGER,
         references:{
             model:'steps',
             key: 'id'
