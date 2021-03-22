@@ -36,11 +36,11 @@
 * [node.bcrypt.js](https://www.npmjs.com/package/bcrypt)
 
 ## Contributions & Contact Info
-A Ramos ==> find me on
-M Kovacs ==> find me on
-J Krikelas ==> find me on
-C Bomm ==> find me on
-W Rowland => find me on [GitHub](https://github.com/rolanduwxcc) or email me at rolanduwxcc@gmail.com
+* A Ramos find me on [GitHub - AdamR-Work](https://github.com/AdamR-Work)
+* M Kovacs find me on [GitHub - MylesKovacs](https://github.com/MylesKovacs)
+* J Krikelas find me on [GitHub - jkrikelas](https://github.com/jkrikelas)
+* C Bomm find me on [GitHub - robomojo77](https://github.com/robomojo77)
+* W Rowland find me on [GitHub - rolanduwxcc](https://github.com/rolanduwxcc)
   
 ## Screenshots
 * [Home Tab](assets/images/HomeTab.png)
