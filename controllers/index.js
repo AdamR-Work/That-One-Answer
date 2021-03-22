@@ -3,7 +3,7 @@ const router = require('express').Router();
 const apiRoutes = require('./api/');
 
 // add more router uses ie router.use('/', homeRoutes);
-router.use('/',)
+router.use('/api',apiRoutes)
 
 module.exports = router;
 
