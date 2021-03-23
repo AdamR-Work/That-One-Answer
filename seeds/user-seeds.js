@@ -1,78 +1,78 @@
 const sequelize = require('../config/connection');
-const { User, Answer } = require('../models');
+const {User} = require('../models');
 
 const userData = [
   {
     username: 'adam',
     email: 'adam@adam.com',
-    isAdmin: true,
+    isAdmin: 1,
     password: 'password123'
   },
   {
     username: 'myles',
     email: 'myles@myles.com',
-    isAdmin: true,
+    isAdmin: 1,
     password: 'password123'
   },
   {
     username: 'james',
     email: 'james@james.com',
-    isAdmin: true,
+    isAdmin: 1,
     password: 'password123'
   },
   {
     username: 'chris',
     email: 'chris@chris.com',
-    isAdmin: true,
+    isAdmin: 1,
     password: 'password123'
   },
   {
     username: 'warren',
     email: 'warren@warren.com',
-    isAdmin: true,
+    isAdmin: 1,
     password: 'password123'
   },
   {
     username: 'bob',
     email: 'bob@bob.com',
-    isAdmin: false,
+    isAdmin: 0,
     password: 'password123'
   },
   {
     username: 'morgan',
     email: 'morgan@morgan.com',
-    isAdmin: false,
+    isAdmin: 0,
     password: 'password123'
   },
   {
     username: 'ruby',
     email: 'ruby@ruby.com',
-    isAdmin: false,
+    isAdmin: 0,
     password: 'password123'
   },
   {
     username: 'kenny',
     email: 'loggins@google.com',
-    isAdmin: false,
+    isAdmin: 0,
     password: 'password123'
   },
   {
     username: 'jenny',
     email: 'jenny@wisconsin.gov',
-    isAdmin: false,
+    isAdmin: 0,
     password: 'password123'
   },
   {
     username: 'admin',
     email: 'admin@admin.com',
-    isAdmin: true,
-    password: 'admin'
+    isAdmin: 1,
+    password: 'adminadmin'
   },
   {
     username: 'user',
     email: 'user@user.com',
-    isAdmin: false,
-    password: 'user'
+    isAdmin: 0,
+    password: 'useruser'
   }
 ];
 

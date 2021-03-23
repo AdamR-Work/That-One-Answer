@@ -14,7 +14,7 @@ Comments.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      steps_id:{
+      step_id:{
         type: DataTypes.INTEGER,
         references:{
             model:'steps',
