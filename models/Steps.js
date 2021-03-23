@@ -22,6 +22,7 @@ Steps.init(
       },
       user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
               model: 'user',
               key: 'id'
@@ -29,6 +30,7 @@ Steps.init(
       },
       answer_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'answer',
           key: 'id'

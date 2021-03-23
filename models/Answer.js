@@ -23,13 +23,14 @@ Answer.init(
       },
       user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'user',
           key: 'id'
         }
       },
       category_id:{
-          type: DataTypes.STRING,
+          type: DataTypes.INTEGER,
           references:{
               model:'category',
               key:'id'
