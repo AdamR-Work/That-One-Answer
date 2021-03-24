@@ -1,0 +1,18 @@
+<article class="wrapper">
+    <div class="title">
+        <a href="{{answer_url}}" target="_blank">{{title}}</a>
+        <span>({{format_url post_url}})</span>
+    </div>
+    <div class="answer"> 
+        {{description}}
+    </div>
+    <div>
+        <ol class="step-list">
+    {{#each step}}
+    <li>
+        {{this}}
+    </li>
+    {{/each}}
+</ol>
+    </div>
+</article>
