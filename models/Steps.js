@@ -7,30 +7,35 @@ Steps.init(
     {
       id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true
       },
       step_text: {
         type: DataTypes.STRING,
+        allowNull: false
       },
       step_number:{
           type: DataTypes.INTEGER,
+          allowNull:false,
           defaultValue:0
       },
       user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
               model: 'user',
               key: 'id'
             }
       },
-      // answer_id: {
-      //   type: DataTypes.INTEGER,
-      //   references: {
-      //     model: 'answer',
-      //     key: 'id'
-      //   }
-      // }
+      answer_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'answer',
+          key: 'id'
+        }
+      }
 
     },
     {
