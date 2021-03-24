@@ -1,5 +1,5 @@
 
-const {Model, Datatypes} = require('sequelize');
+const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection')
 
 class Steps extends Model{};
@@ -16,12 +16,13 @@ Steps.init(
         allowNull: false
       },
       step_number:{
-          type: Datatypes.INTEGER,
+          type: DataTypes.INTEGER,
           allowNull:false,
           defaultValue:0
       },
       user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
               model: 'user',
               key: 'id'
@@ -29,6 +30,7 @@ Steps.init(
       },
       answer_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: 'answer',
           key: 'id'
