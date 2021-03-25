@@ -22,13 +22,13 @@ const Category = require('./Category')
 // });
 
 // //Answer associations
-// // Answer.hasOne(Category, {
-// //     foreignKey: 'category_id'
-// // });
-// Answer.belongsTo(User, {
-//     foreignKey: 'user_id',
-//     onDelete: 'cascade'
-// });
+Answer.belongsTo(Category, {
+    foreignKey: 'category_id'
+});
+Answer.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'cascade'
+});
 // // Answer.hasMany(Steps,{
 // //     foreignKey:'answer_id'
 // // });
