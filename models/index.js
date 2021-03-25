@@ -3,43 +3,76 @@ const Answer = require('./Answer');
 const User = require('./User');
 const Steps = require('./Steps');
 const Comments = require('./Comments');
-const Category = require('./Category')
+const Category = require('./Category');
 
 
-//categories have many answers
-Category.hasMany(Answer,{
-    foreignKey: 'category_id'});
-//answers can have many  categories maybe ??? ??? ?  we have to decide on routing, sub category/answer 
+//-------------------------------------------------
+//-------------------------------------------------
 
-//answer belongs to 1 cat
-Answer.belongsTo(Category,{
-    foreignKey:'category_id'
-})
+// //User associations
+User.hasMany(Answer, { 
+    foreignKey: 'user_id'
+});
 
-//answers have many steps
-Answer.hasMany(Steps,{
-    foreignKey:'answer_id'
-})
-//steps belong to only 1 answer
-Steps.belongsTo(Answer,{
-    foreignKey:'answer_id'
-})
-//steps can have many comments?
-Steps.hasMany(Comments,{
-    foreignKey:'steps_id'
-})
-//answers have many users
-Answer.hasMany(User,{
-    foreignKey:'user_id'
-})
-//comments belong to only 1 step
-Comments.belongsTo(Steps,{
-    foreignKey:'steps_id'
-})
+User.hasMany(Comments, {
+    foreignKey: 'user_id'
+});
+// User.hasMany(Steps, {
+//     foreignKey: 'user_id'
+// });
+
+// //Answer associations
+Answer.belongsTo(Category, {
+    foreignKey: 'category_id'
+});
+Answer.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'cascade'
+});
+ Answer.hasMany(Steps,{
+     foreignKey:'answer_id'
+ });
+
+// //Steps associations
+// Steps.belongsTo(User, {
+//     foreignKey: 'user_id',
+//     onDelete: 'cascade'
+// });
+// Steps.belongsTo(Answer, {
+//     foreignKey: 'answer_id',
+// });
+Steps.hasMany(Comments, {
+    foreignKey: 'steps_id',
+    onDelete: 'cascade'
+});
 
 
+// //Comments associations
+// Comments.belongsTo(User, {
+//     foreignKey: 'user_id',
+//     onDelete: 'cascade'
+// });
+// Comments.belongsTo(Steps, {
+//     foreignKey: 'steps_id',
+//     onDelete: 'cascade'
+// });
+
+//Category associations
+ Category.hasMany(Answer, {
+     foreignKey: 'answer_id'
+ });
+
+// Answer.belongsToMany(Answer,{
+   
+//     foreignKey:'steps_id'
+// })
 
 //steps have many 1 user? ? 
 //steps have many comments?
-
+Comments.belongsTo(Steps,{
+    foreignKey:'steps_id'
+})
+Answer.hasMany(Comments,{
+    foreignKey:'answer_id'
+})
 module.exports = {User, Answer, Steps, Category, Comments};

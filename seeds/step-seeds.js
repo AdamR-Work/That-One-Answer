@@ -23,7 +23,7 @@ const stepsData = [
     step_text: 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.',
     step_number: 4,
     user_id: 3,
-    answer_id: 18
+    answer_id: 1
   },
   {
     step_text: 'In hac habitasse platea dictumst.',
@@ -35,7 +35,7 @@ const stepsData = [
     step_text: 'Vivamus vestibulum sagittis sapien.',
     step_number: 6,
     user_id: 1,
-    answer_id: 20
+    answer_id: 2
   },
   {
     step_text: 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.',
@@ -59,13 +59,13 @@ const stepsData = [
     step_text: 'Morbi a ipsum.',
     step_number: 10,
     user_id: 6,
-    answer_id: 20
+    answer_id: 2
   },
   {
     step_text: 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.',
     step_number: 11,
     user_id: 3,
-    answer_id: 14
+    answer_id: 1
   },
   {
     step_text: 'Donec ut mauris eget massa tempor convallis.',
@@ -85,7 +85,7 @@ const stepsData = [
       'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.',
     step_number: 14,
     user_id: 5,
-    answer_id: 14
+    answer_id: 4
   },
   {
     step_text: 'Quisque porta volutpat erat.',
@@ -104,27 +104,27 @@ const stepsData = [
       'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.',
       step_number: 17,
     user_id: 2,
-    answer_id: 20
+    answer_id: 2
   },
   {
     step_text: 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.',
     step_number: 18,
     user_id: 4,
-    answer_id: 11
+    answer_id: 1
   },
   {
     step_text:
       'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.',
     user_id: 5,
     step_number: 19,
-    answer_id: 13
+    answer_id: 3
   },
   {
     step_text:
       'Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.',
       step_number: 20,
     user_id: 9,
-    answer_id: 16
+    answer_id: 6
   },
   {
     step_text: 'Curabitur convallis.',
@@ -156,7 +156,7 @@ const stepsData = [
       'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.',
       step_number: 6,
     user_id: 1,
-    answer_id: 15
+    answer_id: 5
   },
   {
     step_text: 'Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.',
@@ -168,19 +168,19 @@ const stepsData = [
     step_text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
     user_id: 1,
     step_number: 8,
-    answer_id: 15
+    answer_id: 5
   },
   {
     step_text: 'Nam tristique tortor eu pede.',
     step_number: 9,
     user_id: 4,
-    answer_id: 16
+    answer_id: 6
   },
   {
     step_text: 'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.',
     step_number: 8,
     user_id: 4,
-    answer_id: 18
+    answer_id: 8
   },
   {
     step_text: 'Proin eu mi. Nulla ac enim.',
@@ -204,7 +204,7 @@ const stepsData = [
     step_text: 'Donec quis orci eget orci vehicula condimentum.',
     user_id: 3,
     step_number: 1,
-    answer_id: 19
+    answer_id: 9
   },
   {
     step_text: 'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.',
@@ -216,7 +216,7 @@ const stepsData = [
     step_text: 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.',
     user_id: 10,
     step_number: 1,
-    answer_id: 14
+    answer_id: 4
   },
   {
     step_text: 'Maecenas ut massa quis augue luctus tincidunt.',
@@ -240,13 +240,13 @@ const stepsData = [
     step_text: 'Proin at turpis a pede posuere nonummy.',
     user_id: 8,
     step_number: 1,
-    answer_id: 19
+    answer_id: 9
   },
   {
     step_text: 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
     step_number: 1,
     user_id: 9,
-    answer_id: 19
+    answer_id: 9
   },
   {
     step_text:
@@ -285,7 +285,7 @@ const stepsData = [
     step_text: 'Integer ac leo. Pellentesque ultrices mattis odio.',
     step_number: 1,
     user_id: 4,
-    answer_id: 19
+    answer_id: 9
   },
   {
     step_text: 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.',
@@ -298,7 +298,7 @@ const stepsData = [
       'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.',
       step_number: 2,
     user_id: 2,
-    answer_id: 19
+    answer_id: 9
   },
   {
     step_text: 'Proin risus. Praesent lectus.',
