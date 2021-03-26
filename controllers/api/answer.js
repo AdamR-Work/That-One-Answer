@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
+const withAuth = require('../../utils/auth');
 const { Answer, User, Category,Comments } = require('../../models');
 
 //.../api/answers ALL ANSWERs
@@ -31,9 +33,10 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Answer.create({
         title: req.body.title,
+
         description: req.body.description,
         user_id: req.body.user_id, //probably can be session
         category_id: req.body.category_id

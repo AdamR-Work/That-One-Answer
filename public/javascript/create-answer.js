@@ -3,15 +3,18 @@
 async function addPage(event){
 
     event.preventDefault();
-    const title = document.querySelector('textarea[name="formTitle]').value;//
-    const description = document.querySelector('textarea[formDescription]').value;
-    const category_id = document.querySelector('select[formCats]').value;
+    const title = document.querySelector('textarea[name="formTitle"]').value;//
+    const description = document.querySelector('textarea[name="formDescription"]').value;
+    // const category_id = document.querySelector('select[name="formCats"]').value;
 // ADD THE Page.data via the route 
-    const response = await fetch(`./api/answer`,{
+    const response = await fetch(`/api/answer`,{
         method: 'POST',
         body: JSON.stringify({
+          user_id,
+
           title,
-          description
+          description,
+          // category_id
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -19,9 +22,10 @@ async function addPage(event){
       });
     
       if (response.ok) {//trying to get it to create page after assigning title& description
-        document.location.replace('/answer/'+ this.id ); // is this "id" refrencing the one just created. we will see
+        document.location.replace('/')
       } else {
-        alert(response.statusText);
+        console.log(response)
+     -   alert(response.statusText);
       }
     }
-    document.querySelector('.newAnswer').addEventListener('submit', addPage);
+    document.querySelector('.new').addEventListener('submit', addPage);

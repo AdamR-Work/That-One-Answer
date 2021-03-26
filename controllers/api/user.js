@@ -1,5 +1,6 @@
  const router = require('express').Router();
- //const sequelize = require('../../config/connection');
+ const sequelize = require('../../config/connection');
+ const withAuth = require('../../utils/auth');
  const {User, Answer, Comments, Category} = require('../../models');
 
  // Find all users and thier comments and answer/posts
@@ -42,7 +43,6 @@
 //Find one user and display thier answers and comments
  router.get('/:id', (req,res) => {
     User.findOne({
-        attributes: { exclude: ['password'] },
         where:{
             id: req.params.id
         },
@@ -116,22 +116,22 @@ router.put('/', (req,res) =>{
     });
 });
 
-// Login route
 router.post('/login', (req, res) => {
+    // expects {email: 'lernantino@gmail.com', password: 'password1234'}
     User.findOne({
       where: {
         email: req.body.email
       }
     }).then(dbUserData => {
       if (!dbUserData) {
-        res.status(400).json({ message: 'Maybe a different Email?' });
+        res.status(400).json({ message: 'No user with that email address!' });
         return;
       }
   
       const validPassword = dbUserData.checkPassword(req.body.password);
   
       if (!validPassword) {
-        res.status(400).json({ message: 'Not Quite!' });
+        res.status(400).json({ message: 'Incorrect password!' });
         return;
       }
   
@@ -140,7 +140,7 @@ router.post('/login', (req, res) => {
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
     
-        res.json({ user: dbUserData, message: 'Welcome to That One Answer You Are Looking For!' });
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
       });
     });
   });

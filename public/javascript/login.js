@@ -15,8 +15,10 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
+            console.log('you logged in')
             document.location.replace('/homepage');
         } else {
+            console.log('you didnt log in')
             alert(response.statusText);
         }
     }
@@ -41,8 +43,10 @@ async function signupFormHandler(event) {
         });
 
         if (response.ok) {
+            console.log('you signed up')
             document.location.replace('/');
         } else {
+            console.log('you didnt sign up')
             alert(response.statusText);
         }
     }

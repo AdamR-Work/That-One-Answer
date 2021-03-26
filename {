@@ -1,0 +1,13 @@
+Executing (default): CREATE TABLE IF NOT EXISTS `Session` (`sid` VARCHAR(36) , `expires` DATETIME, `data` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`sid`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `Session`
+Executing (default): CREATE TABLE IF NOT EXISTS `user` (`id` INTEGER auto_increment , `username` VARCHAR(255), `email` VARCHAR(255) UNIQUE, `password` VARCHAR(255), `is_admin` INTEGER DEFAULT 0, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `user`
+Executing (default): CREATE TABLE IF NOT EXISTS `category` (`id` INTEGER NOT NULL auto_increment , `category_name` VARCHAR(255) NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `category`
+Executing (default): CREATE TABLE IF NOT EXISTS `answer` (`id` INTEGER NOT NULL auto_increment , `title` VARCHAR(255) NOT NULL, `description` VARCHAR(255) NOT NULL, `user_id` INTEGER NOT NULL, `category_id` INTEGER, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL, `answer_id` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (`answer_id`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `answer`
+Executing (default): CREATE TABLE IF NOT EXISTS `steps` (`id` INTEGER NOT NULL auto_increment , `step_text` VARCHAR(255) NOT NULL, `step_number` INTEGER NOT NULL DEFAULT 0, `user_id` INTEGER NOT NULL, `answer_id` INTEGER NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`user_id`) REFERENCES `user` (`id`), FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `steps`
+Executing (default): CREATE TABLE IF NOT EXISTS `comments` (`id` INTEGER NOT NULL auto_increment , `comment_text` VARCHAR(255) NOT NULL, `steps_id` INTEGER, `user_id` INTEGER NOT NULL, `created_at` DATETIME NOT NULL, `updated_at` DATETIME NOT NULL, `answer_id` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`steps_id`) REFERENCES `steps` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `comments`
+Now listening

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Answer, Comments} = require("../models")
+const {User, Answer, Comments, Category} = require("../models")
 router.get('/', (req, res) => {
     User.findOne({
         where: {
@@ -30,6 +30,18 @@ router.get('/login', (req, res) => {
   
     res.render('login');
   });
-  
+
+router.get('/create', (req,res)=> {
+    Category.findAll({
+        attributes:[
+            'id',
+            'category_name'
+        ]
+    }).then(response => {
+        let hbsObj = response.dataValues
+        console.log(response.dataValues)
+        res.render("create", hbsObj)
+    })
+})
 
 module.exports = router;
