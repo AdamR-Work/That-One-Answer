@@ -30,6 +30,7 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
+
 router.post('/', (req, res) => {
     Answer.create({
         title: req.body.title,

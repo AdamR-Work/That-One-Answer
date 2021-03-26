@@ -1,0 +1,24 @@
+
+{{#if loggedIn}}
+<form class="newAnswer">
+
+    <label for="cats">Choose a category:</label>
+
+<select name="formCats" id="formCats">
+  <option value="1">A Fresh Install</option>
+  <option value="2">gitHub</option>
+  <option value="3">Html</option>
+  <option value="4">Css</option>
+</select>
+    <div>
+        <span>Enter the Title of your New Answer</span>
+        <textarea name="formTitle"></textarea>
+    </div>
+    <div>
+        <span>Give us quick description</span>
+        <textarea name="formDescription"></textarea>
+    </div>
+</form>
+
+{{/if}}
+<script src="/javascript/create-answer.js"></script>
