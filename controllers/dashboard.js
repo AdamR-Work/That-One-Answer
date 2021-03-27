@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Answer, Comments,Steps} = require("../models")
+const {User, Answer, Comments, Steps} = require("../models")
 
 router.get('/dashboard', (req, res) => {
     Category.findAll({
