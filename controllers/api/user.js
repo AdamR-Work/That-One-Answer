@@ -153,6 +153,7 @@ router.post('/logout', (req, res) => {
   }
   else {
     res.status(404).end();
+    console.log('not working---------------------');
   }
 });
 
