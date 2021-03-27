@@ -66,13 +66,13 @@ const userData = [
     username: 'admin',
     email: 'admin@admin.com',
     isAdmin: 1,
-    password: 'password123'
+    password: 'adminadmin'
   },
   {
     username: 'user',
     email: 'user@user.com',
     isAdmin: 0,
-    password: 'password123'
+    password: 'useruser'
   }
 ];
 
