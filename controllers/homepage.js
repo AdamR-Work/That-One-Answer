@@ -33,7 +33,9 @@ router.get('/', (req, res) => {
         let hbsObj = {answers: tempResponse};
     
         // res.render("homepage",{ hbsObj, loggedIn:req.session.loggedIn});
-        res.render("homepage",hbsObj);
+        myObject = {hbsObj, loggedIn: req.session.loggedIn};
+        console.log(myObject);
+        res.render("homepage",myObject);
     })
     .catch(err => {
         console.log(err);
