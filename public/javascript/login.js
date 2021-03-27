@@ -16,7 +16,7 @@ async function loginFormHandler(event) {
 
         if (response.ok) {
             console.log('you logged in')
-            document.location.replace('/homepage');
+            document.location.replace('/');
         } else {
             console.log('you didnt log in')
             alert(response.statusText);
