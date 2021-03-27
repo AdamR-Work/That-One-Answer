@@ -1,0 +1,23 @@
+
+{{username}}
+ {{#if dataValues}}
+<ol class="answer-list">
+   
+    Answers:
+    {{#each answers}}
+    <li>
+        {{dataValues.title}}
+    </li>
+    {{/each}}
+
+</ol>
+<ol>
+    Comments:
+    {{#each comments}}
+    <li>
+        {{dataValues.comment_text}}
+    </li>
+    {{/each}}
+</ol>
+{{/if}}
+
