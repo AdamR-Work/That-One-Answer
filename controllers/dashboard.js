@@ -27,8 +27,8 @@ router.get('/dashboard', (req, res) => {
 });
 
 
-// below i was still figuering out how to go from category to answer page
-// or do we go from categroies .then click and show all the items in that cat?
+// below i was still figuring out how to go from category to answer page
+// or do we go from categoroies .then click and show all the items in that cat?
 router.get('/dashboard/:id', (req, res) => {
     Answer.findOne({
         where: {
