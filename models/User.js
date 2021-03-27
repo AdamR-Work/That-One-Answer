@@ -58,12 +58,6 @@ User.init(
             updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
             return updatedUserData;
         }
-        // ,
-        // //set up password on a bulkCreate
-        // async beforeBulkCreate(newUserData) {
-        //   newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        //   return newUserData;
-        // }
       },
         sequelize,
         timestamps: false,
