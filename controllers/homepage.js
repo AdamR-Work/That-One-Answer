@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Answer, Comments} = require("../models")
+const {User, Answer, Comments, Category} = require("../models")
 router.get('/', (req, res) => {
     User.findOne({
         where: {
@@ -16,11 +16,39 @@ router.get('/', (req, res) => {
             }
         ]
     }).then(response => {
+        let hbsObj = response.get({plain:true});
+    
+        res.render("homepage",{
+           hbsObj, 
+           loggedIn:req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
+
+router.get('/create', (req,res)=> {
+    Category.findAll({
+        attributes:[
+            'id',
+            'category_name'
+        ]
+    }).then(response => {
         let hbsObj = response.dataValues
         console.log(response.dataValues)
-        res.render("homepage", hbsObj)
+        res.render("create", hbsObj)
     })
 })
-
 
 module.exports = router;

@@ -15,8 +15,10 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
+            console.log('you logged in')
             document.location.replace('/homepage');
         } else {
+            console.log('you didnt log in')
             alert(response.statusText);
         }
     }
@@ -30,7 +32,7 @@ async function signupFormHandler(event) {
     const password = document.querySelector('#password-signup').value.trim();
 
     if (username && email && password) {
-        const response = await fetch('/api/users', {
+        const response = await fetch('/api/user', {
             method: 'post',
             body: JSON.stringify({
                 username,
@@ -41,8 +43,10 @@ async function signupFormHandler(event) {
         });
 
         if (response.ok) {
+            console.log('you signed up')
             document.location.replace('/');
         } else {
+            console.log('you didnt sign up')
             alert(response.statusText);
         }
     }

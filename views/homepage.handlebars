@@ -1,7 +1,8 @@
 
 {{username}}
+ {{#if dataValues}}
 <ol class="answer-list">
-    
+   
     Answers:
     {{#each answers}}
     <li>
@@ -18,7 +19,5 @@
     </li>
     {{/each}}
 </ol>
+{{/if}}
 
-<script>
-  
-</script>
