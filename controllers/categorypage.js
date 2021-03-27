@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { User, Answer, Comments, Steps } = require("../models")
+const { User, Answer, Comments, Steps, Category } = require("../models")
 
-router.get('/', (req, res) => {
+router.get('/dashboard', (req, res) => {
     Category.findAll({
         where: {
             category_id: req.params.id
@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
         ],
         include: [
             {
-                model: Answer,
-                attributes: ['title']
+                model: Category,
+                attributes: ['category_name']
             },
 
         ]
@@ -22,14 +22,14 @@ router.get('/', (req, res) => {
         .then(response => {
             let hbsObj = response.dataValues
             console.log(response.dataValues)
-            res.render("dashboard", hbsObj)
+            res.render("category", hbsObj)
         })
 });
 
-
-// below i was still figuering out how to go from category to answer page
-// or do we go from categroies .then click and show all the items in that cat?
-router.get('/categorypage/:id', (req, res) => {
+/*
+// below i was still figuring out how to go from category to answer page
+// or do we go from categoroies .then click and show all the items in that cat?
+router.get('/dashboard/:id', (req, res) => {
     Answer.findOne({
         where: {
             id: 1   // this has to change to based off of user log in. its just hard coded atm
@@ -54,9 +54,11 @@ router.get('/categorypage/:id', (req, res) => {
                 attributes: ['step_text', 'step_number']
             }
         ]
-    }).then(response => {
+    })
+    
+   .then(response => {
         let hbsObj = response.dataValues
         console.log(response.dataValues)
-        res.render("answer", hbsObj)
+        res.render("category", hbsObj)
     })
 })
