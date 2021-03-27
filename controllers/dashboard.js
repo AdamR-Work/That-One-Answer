@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const {User, Answer, Comments,Steps} = require("../models")
 
+
+
+
 router.get('/dashboard', (req, res) => {
     Category.findAll({
         where: {
@@ -27,8 +30,8 @@ router.get('/dashboard', (req, res) => {
 });
 
 
-// below i was still figuring out how to go from category to answer page
-// or do we go from categoroies .then click and show all the items in that cat?
+// below i was still figuering out how to go from category to answer page
+// or do we go from categroies .then click and show all the items in that cat?
 router.get('/dashboard/:id', (req, res) => {
     Answer.findOne({
         where: {
@@ -60,3 +63,113 @@ router.get('/dashboard/:id', (req, res) => {
         res.render("answer", hbsObj)
     })
 })
+
+
+// below this  
+const router = require('express').Router();
+const {User, Answer, Comments, Category} = require("../models")
+router.get('/', (req, res) => {
+    User.findOne({
+        where: {
+            id: 1   // this has to change to based off of user log in. its just hard coded atm
+        },
+        include: [
+            {
+                model:Answer,
+                attributes: ['title', 'description']
+            },
+            {
+                model: Comments,
+                attributes: ['comment_text', 'steps_id']
+            }
+        ]
+    }).then(response => {
+        let hbsObj = response.get({plain:true});
+    
+        res.render("homepage",{
+           hbsObj, 
+           loggedIn:req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
+
+router.get('/create', (req,res)=> {
+    Category.findAll({
+        attributes:[
+            'id',
+            'category_name'
+        ]
+    }).then(response => {
+        let hbsObj = response.dataValues
+        console.log(response.dataValues)
+        res.render("create", hbsObj)
+    })
+})
+
+module.exports = router;const router = require('express').Router();
+const {User, Answer, Comments, Category} = require("../models")
+router.get('/', (req, res) => {
+    User.findOne({
+        where: {
+            id: 1   // this has to change to based off of user log in. its just hard coded atm
+        },
+        include: [
+            {
+                model:Answer,
+                attributes: ['title', 'description']
+            },
+            {
+                model: Comments,
+                attributes: ['comment_text', 'steps_id']
+            }
+        ]
+    }).then(response => {
+        let hbsObj = response.get({plain:true});
+    
+        res.render("homepage",{
+           hbsObj, 
+           loggedIn:req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
+
+router.get('/create', (req,res)=> {
+    Category.findAll({
+        attributes:[
+            'id',
+            'category_name'
+        ]
+    }).then(response => {
+        let hbsObj = response.dataValues
+        console.log(response.dataValues)
+        res.render("create", hbsObj)
+    })
+})
+
+module.exports = router;

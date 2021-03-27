@@ -11,10 +11,9 @@ async function addPage(event){
         method: 'POST',
         body: JSON.stringify({
           user_id,
-
           title,
           description,
-          // category_id
+         category_id
         }),
         headers: {
           'Content-Type': 'application/json'

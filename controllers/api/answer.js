@@ -35,10 +35,10 @@ router.get('/', (req, res) => {
 
 router.post('/', withAuth, (req, res) => {
     Answer.create({
-        title: req.body.title,
 
+        title: req.body.title,
         description: req.body.description,
-        user_id: req.body.user_id, //probably can be session
+        user_id: req.session.user_id, //probably can be session
         category_id: req.body.category_id
     })
     .then(dbAnswerData => res.json(dbAnswerData))
