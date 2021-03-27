@@ -1,14 +1,21 @@
 const router = require('express').Router();
 const {User, Answer, Comments, Category} = require("../models")
+
+
+//-------Home Page - Shows All Answers
 router.get('/', (req, res) => {
-    User.findOne({
-        where: {
-            id: 1   // this has to change to based off of user log in. its just hard coded atm
-        },
+    Answer.findAll({
+        attributes: [
+            'title',
+            'description',
+            'user_id',
+            'category_id',
+            'created_at'
+        ],
         include: [
             {
-                model:Answer,
-                attributes: ['title', 'description']
+                model:User,
+                attributes: ['username']
             },
             {
                 model: Comments,
@@ -16,12 +23,17 @@ router.get('/', (req, res) => {
             }
         ]
     }).then(response => {
-        let hbsObj = response.get({plain:true});
+
+        let tempResponse = [];
+        for (let i = 0; i < 5; i++) {
+            const element = response[i];
+            tempResponse.push(element);
+        }             
     
-        res.render("homepage",{
-           hbsObj, 
-           loggedIn:req.session.loggedIn
-        });
+        let hbsObj = {answers: tempResponse};
+    
+        // res.render("homepage",{ hbsObj, loggedIn:req.session.loggedIn});
+        res.render("homepage",hbsObj);
     })
     .catch(err => {
         console.log(err);
@@ -29,15 +41,19 @@ router.get('/', (req, res) => {
       });
   });
 
+//-------Log In Route
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
+        console.log(req.session);
+        res.render('homepage', { loggedIn: req.session.loggedIn });
+        return;
     }
-  
+
     res.render('login');
   });
 
+
+//-------Category Page Route
 router.get('/create', (req,res)=> {
     Category.findAll({
         attributes:[
