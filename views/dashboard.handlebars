@@ -1,0 +1,16 @@
+{{#if hbsObj.answers}}
+<ol class="answer-list">   
+    {{#each hbsObj.answers}}
+    <li class="card w-50">
+        <div class="card-body">
+            <h5 class="card-title">{{dataValues.title}}</h5>
+            <p class="card-text">{{dataValues.description}}</p>
+        </div>
+    </li>
+    {{/each}}
+
+</ol>
+{{else}}
+<p>Hello world!</p>
+{{/if}}
+
