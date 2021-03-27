@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Answer, Comments,Category} = require("../models")
+const {User, Answer, Comments, Category} = require("../models")
 // add more routes
 const apiRoutes = require('./api/');
 const homeRoutes = require('./homepage');
