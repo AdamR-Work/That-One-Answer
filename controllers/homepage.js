@@ -67,6 +67,45 @@ router.get('/create', (req,res)=> {
         console.log(response.dataValues)
         res.render("create", hbsObj)
     })
-})
+});
+
+//-------Dashboard Route - Show Logged in Users Data
+router.get('/dashboard', (req, res) => {
+    Answer.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        attributes: [
+            'title',
+            'description',
+            'user_id',
+            'category_id',
+            'created_at'
+        ],
+        include: [
+            {
+                model:User,
+                attributes: ['username']
+            },
+            {
+                model: Comments,
+                attributes: ['comment_text', 'steps_id']
+            }
+        ]
+    }).then(response => {
+        console.log(req.session);
+        console.log(response);
+    
+        let hbsObj = {answers: response};
+
+        console.log(hbsObj);
+
+        res.render("dashboard",{hbsObj, loggedIn: req.session.loggedIn});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
 
 module.exports = router;
