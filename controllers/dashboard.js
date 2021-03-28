@@ -1,62 +1,189 @@
 const router = require('express').Router();
-const {User, Answer, Comments, Steps} = require("../models")
+const withAuth = require('../utils/auth');
+const sequelize = require('../config/connection');
+const {User, Answer, Comments, Steps, Category} = require("../models")
 
-router.get('/dashboard', (req, res) => {
-    Category.findAll({
+
+
+
+router.get('/', (req, res) => {
+    User.findOne({
         where: {
-            category_id: req.params.id
+            id: req.session.user_id
         },
         attributes: [
-            'id',
-           'category_name'
-            
+            'username'
         ],
         include: [
             {
-                model: Answer,
-                attributes: ['title']
+              model: Answer,
+              order:['created_at', 'ASC'],
+              attributes: ['created_at','id','title', 'description']
             },
-           
-        ]
+            {
+              model: Comments,
+              attributes: ['comment_text', 'steps_id',"created_at"]
+      
+            }
+      
+          ]
     })
-    .then(response => {
-        let hbsObj = response.dataValues
-        console.log(response.dataValues)
-        res.render("dashboard", hbsObj)
+    .then(dbUserData => {
+        if (!dbUserData) {
+            res.status(404).json({ message: 'no data' });
+            return;
+          }
+        const userPage = dbUserData.get({ plain: true });
+
+        res.render('dashboard',{
+            userPage,
+            loggedIn: req.session.loggedIn
+
+        });
     })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 
-// below i was still figuring out how to go from category to answer page
-// or do we go from categories .then click and show all the items in that cat?
-router.get('/dashboard', (req, res) => {
-    Answer.findOne({
-        where: {
-            id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
-        },
-        attributes:[
-            'id',
-            'title',
-            'description'
+// router.get('/', (req, res) => {
+//     Answer.findOne({
+//         where: {
+//             id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
+//         },
+//         attributes:[
+//             'id',
+//             'title',
+//             'description'
 
-        ],
-        include: [
-            {
-                model:User,
-                attributes: ['username']
-            },
-            {
-                model: Comments,
-                attributes: ['comment_text', 'steps_id']
-            },
-            {
-                model: Steps,
-                attributes:['step_text', 'step_number']
-            }
-        ]
-    }).then(response => {
-        let hbsObj = response.dataValues
-        console.log(response.dataValues)
-        res.render("answer", hbsObj)
-    })
-})
+//         ],
+//         include: [
+//             {
+//                 model:User,
+//                 attributes: ['username']
+//             },
+//             {
+//                 model: Comments,
+//                 attributes: ['comment_text', 'steps_id']
+//             },
+//             {
+//                 model: Steps,
+//                 attributes:['step_text', 'step_number']
+//             }
+//         ]
+//     }).then(response => {
+//         let hbsObj = response.dataValues
+//         console.log(response.dataValues)
+//         res.render("answer", hbsObj)
+//     })
+// })
+
+
+// // below this  
+
+// router.get('/', withAuth, (req, res) => {
+//     User.findOne({
+//         where: {
+//             id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
+//         },
+//         include: [
+//             {
+//                 model:Answer,
+//                 attributes: ['title', 'description']
+//             },
+//             {
+//                 model: Comments,
+//                 attributes: ['comment_text', 'steps_id']
+//             }
+//         ]
+//     }).then(response => {
+//         let hbsObj = response.get({plain:true});
+    
+//         res.render("homepage",{
+//            hbsObj, 
+//            loggedIn:req.session.loggedIn
+//         });
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//       });
+//   });
+
+// router.get('/login', (req, res) => {
+//     if (req.session.loggedIn) {
+//       res.redirect('/');
+//       return;
+//     }
+  
+//     res.render('login');
+//   });
+
+// router.get('/create', (req,res)=> {
+//     Category.findAll({
+//         attributes:[
+//             'id',
+//             'category_name'
+//         ]
+//     }).then(response => {
+//         let hbsObj = response.dataValues
+//         console.log(response.dataValues)
+//         res.render("create", hbsObj)
+//     })
+// })
+
+
+// router.get('/', (req, res) => {
+//     User.findOne({
+//         where: {
+//             id: 1   // this has to change to based off of user log in. its just hard coded atm
+//         },
+//         include: [
+//             {
+//                 model:Answer,
+//                 attributes: ['title', 'description']
+//             },
+//             {
+//                 model: Comments,
+//                 attributes: ['comment_text', 'steps_id']
+//             }
+//         ]
+//     }).then(response => {
+//         let hbsObj = response.get({plain:true});
+    
+//         res.render("homepage",{
+//            hbsObj, 
+//            loggedIn:req.session.loggedIn
+//         });
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//       });
+//   });
+
+// router.get('/login', (req, res) => {
+//     if (req.session.loggedIn) {
+//       res.redirect('/');
+//       return;
+//     }
+  
+//     res.render('login');
+//   });
+
+// router.get('/create', (req,res)=> {
+//     Category.findAll({
+//         attributes:[
+//             'id',
+//             'category_name'
+//         ]
+//     }).then(response => {
+//         let hbsObj = response.dataValues
+//         console.log(response.dataValues)
+//         res.render("create", hbsObj)
+//     })
+// })
+
+module.exports = router;

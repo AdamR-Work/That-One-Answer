@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const {User, Answer, Comments, Category} = require("../models")
+const withAuth = require('../utils/auth');
 
 
 //-------Home Page - Shows All Answers
 router.get('/', (req, res) => {
     Answer.findAll({
         attributes: [
+            'id',
             'title',
             'description',
             'user_id',
@@ -55,57 +57,25 @@ router.get('/login', (req, res) => {
   });
 
 
-//-------Category Page Route
-router.get('/create', (req,res)=> {
-    Category.findAll({
-        attributes:[
-            'id',
-            'category_name'
-        ]
-    }).then(response => {
-        let hbsObj = response.dataValues
-        console.log(response.dataValues)
-        res.render("create", hbsObj)
-    })
-});
 
-//-------Dashboard Route - Show Logged in Users Data
-router.get('/dashboard', (req, res) => {
-    Answer.findAll({
-        where: {
-            user_id: req.session.user_id
-        },
-        attributes: [
-            'title',
-            'description',
-            'user_id',
-            'category_id',
-            'created_at'
-        ],
-        include: [
-            {
-                model:User,
-                attributes: ['username']
-            },
-            {
-                model: Comments,
-                attributes: ['comment_text', 'steps_id']
-            }
-        ]
-    }).then(response => {
-        console.log(req.session);
-        console.log(response);
-    
-        let hbsObj = {answers: response};
-
-        console.log(hbsObj);
-
-        res.render("dashboard",{hbsObj, loggedIn: req.session.loggedIn});
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-});
+// -------Category Page Route   this needs to be changed to category. its half and half of two
+// router.get('/create', (req,res)=> {
+//     Category.findAll({
+//         attributes:[
+//             'id',
+//             'category_name'
+//         ]
+//     }).then(response => {
+//         let hbsObj = response.dataValues
+//         console.log(response.dataValues)
+//         res.render("create", hbsObj)
+//     })
+// })
+router.get('/create', withAuth, (req,res)=> {
+    if (req.session.loggedIn){
+        res.render("create",{
+            loggedIn: req.session.loggedIn
+        } );
+    }})
 
 module.exports = router;

@@ -11,7 +11,14 @@
         <ol class="step-list">
             {{#each steps}}
             <li>
-                {{dataValues.step_text}}
+                <form class="new-comment">
+                {{dataValues.step_text}} <span class="comment_text">{{dataValues.comment_text}}</span>
+                <textarea class="" name="new-comment"></textarea>
+                <button type="commit-comment">Comment</button>
+                </form>
+                {{#if loggedIn}} 
+                {{/if}}
+                
             </li>
             {{/each}}
         </ol>
@@ -19,7 +26,7 @@
     <div>
         <form class="step-form">
             <div>
-                <textarea name="step-body"></textarea>
+                <textarea name="step-text"></textarea>
             </div>
 
             <div>
@@ -27,18 +34,11 @@
             </div>
         </form>
     </div>
-    <div>
-        <form class="edit-step-form">
-            <div>
-                <input name="step-title" type="text" value="{{step.step_text}}" />
-            </div>
-            <button type="submit">Save Step</button>
-        </form>
-    </div>
+    {{!-- <div>
+        <button type="submit">Save Step</button>
+    </div> --}}
 </article>
-<script>
-
-</script>
+<script src="/javascript/add-step.js"></script>
 
 {{!-- ?? should we add buttons that add buttons that "isAdmin" can see to edit page --}}
 
