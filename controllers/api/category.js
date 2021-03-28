@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
-const {Answer, User, Comments, Category} = require('../../models');
+const { User, Answer, Comments, Category, Steps } = require('../../models');
+
+
 router.get('/', (req, res) => {
     Category.findAll({
         attributes: [

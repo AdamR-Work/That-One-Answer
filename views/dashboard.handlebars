@@ -1,0 +1,29 @@
+<article class="wrapper">
+   
+    
+    <h1>Welcome back {{userPage.username}}. Weve missed you!</h1>
+    <h2>Answers you've created.</h2>
+    {{#each userPage.answers}}
+    <div class="title">
+       <h3>Title:{{title}}</h3>
+        <p>description:{{description}}</p>
+        <p>{{created_at}}</p>
+        <a class="" href="/{{id}}">Click to view this Answer.{{id}}</a>
+    </div>
+    {{/each}}
+
+
+    <h2>Answers you've commented on.</h2>
+
+    {{#each userPage.comments}}
+    <div class="title">
+       <h3 href="/{{id}}">{{comment_text}}</h3>
+        <p>{{title}}</p>
+        <p>{{created_at}}</p>
+        <a class="" href="/{{id}}">Click to view your comment.{{id}}</a>
+
+    </div>
+
+    {{/each}}
+
+</article>

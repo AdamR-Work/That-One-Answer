@@ -1,18 +1,21 @@
-{{!-- {{#if loggedIn}} --}}
+{{#if loggedIn}} 
+logged IN
+{{/if}}
+
 <form class="new">
     <div class="mb-3">
-            {{!-- <label for="cats">Choose a category:</label>
+            <label for="cats">Choose a category:</label>
 
     <select name="formCats" id="formCats">
         <option value="1">A Fresh Install</option>
         <option value="2">gitHub</option>
         <option value="3">Html</option>
         <option value="4">Css</option>
-    </select> --}}
-    <label for="categoryToChoose" class="form-label">Category</label>
-    <select class="form-control" name="formCats" id="formCats">
-        {{!-- {{>cats category}} --}}
     </select>
+    <label for="categoryToChoose" class="form-label">Category</label>
+{{!-- <select class="form-control" name="formCats" id="formCats">
+        {{>cats category}}
+    </select> --}}
     </div>
 
 
@@ -29,5 +32,5 @@
     </div>
 </form>
 
-{{!-- {{/if}} --}}
+
 <script src="/javascript/create-answer.js"></script>
