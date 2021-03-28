@@ -57,6 +57,7 @@ router.get('/login', (req, res) => {
   });
 
 
+
 // -------Category Page Route   this needs to be changed to category. its half and half of two
 // router.get('/create', (req,res)=> {
 //     Category.findAll({
