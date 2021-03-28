@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
-const { User, Answer, Comments, Category,Steps } = require('../../models');
+const { User, Answer, Comments, Category, Steps } = require('../../models');
 
 // Find all users and their comments and answer/posts
 router.get('/', (req, res) => {

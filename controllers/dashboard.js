@@ -6,7 +6,7 @@ const {User, Answer, Comments, Steps, Category} = require("../models")
 
 
 
-router.get('/', withAuth, (req, res) => {
+router.get('/', (req, res) => {
     User.findOne({
         where: {
             id: req.session.user_id
@@ -17,7 +17,8 @@ router.get('/', withAuth, (req, res) => {
         include: [
             {
               model: Answer,
-              attributes: ['id','title', 'description','created_at']
+              order:['created_at', 'ASC'],
+              attributes: ['created_at','id','title', 'description']
             },
             {
               model: Comments,

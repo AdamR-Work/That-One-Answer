@@ -3,10 +3,10 @@ const {User, Answer, Comments,Steps, Category} = require("../models")
 
 
 // Find one Answer and all its data to push to HB
-router.get('/', (req, res) => {//change this to id
+router.get('/:id', (req, res) => {//change this to id
     Answer.findOne({
         where: {
-            id: 1   // this has to change to based off of user log in. its just hard coded atm
+            id: req.params.id   // this has to change to based off of user log in. its just hard coded atm
         },
         attributes:[
             'id',
@@ -34,10 +34,11 @@ router.get('/', (req, res) => {//change this to id
         ]
     }).then(response => {
         let hbsObj = response.dataValues
-        console.log(response.dataValues)
+        
         res.render("answer", hbsObj)
     })
 })
+
 
 
 //...category/id find ALL ANSWERs by CATEGORY
@@ -114,5 +115,6 @@ router.get('/user/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
 
 module.exports = router;

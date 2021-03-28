@@ -10,7 +10,7 @@ async function addPage(event){
     const response = await fetch(`/api/answer`,{
         method: 'POST',
         body: JSON.stringify({
-          // id,
+        
           title,
           description,
          category_id
@@ -19,9 +19,9 @@ async function addPage(event){
           'Content-Type': 'application/json'
         }
       });
-
+console.log(response)
       if (response.ok) {//trying to get it to create page after assigning title& description
-        document.location.replace('/')
+        document.location.replace('/dashboard/')
       } else {
         console.log(response)
      -   alert(response.statusText);
