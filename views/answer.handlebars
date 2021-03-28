@@ -4,28 +4,47 @@
         {{!-- <a href="{{id}}" target="_blank">{{title}}</a> --}}
         {{!-- <span>({{format_url post_url}})</span> --}}
     </div>
-    <div class="answer"> 
+    <div class="answer">
         {{description}}
     </div>
     <div>
         <ol class="step-list">
-    {{#each steps}}
-    <li>
-        {{dataValues.step_text}}
-    </li>
-    {{/each}}
-</ol>
+            {{#each steps}}
+            <li>
+                <form class="new-comment">
+                {{dataValues.step_text}} <span class="comment_text">{{dataValues.comment_text}}</span>
+                <textarea class="" name="new-comment"></textarea>
+                <button type="commit-comment">Comment</button>
+                </form>
+                {{#if loggedIn}} 
+                {{/if}}
+                
+            </li>
+            {{/each}}
+        </ol>
     </div>
+    <div>
+        <form class="step-form">
+            <div>
+                <textarea name="step-text"></textarea>
+            </div>
+
+            <div>
+                <button type="submit">Add a step</button>
+            </div>
+        </form>
+    </div>
+    {{!-- <div>
+        <button type="submit">Save Step</button>
+    </div> --}}
 </article>
-<script>
-   
-</script>
+<script src="/javascript/add-step.js"></script>
 
 {{!-- ?? should we add buttons that add buttons that "isAdmin" can see to edit page --}}
 
 
 
 {{!-- this is for possible future img upload --}}
-{{!-- 
+{{!--
 <input type="file" id="postImage">
 <button id="upload">upload </button> --}}

@@ -1,24 +1,18 @@
-
-{{username}}
-<ol class="answer-list">
-    
-    Answers:
-    {{#each answers}}
-    <li>
-        {{dataValues.title}}
+{{#if hbsObj.answers}}
+<ol class="answer-list">   
+    {{#each hbsObj.answers}}
+    <li class="card w-50">
+        <div class="card-body">
+            <a href="/answer/{{dataValues.id}}">
+            <h5 class="card-title">{{dataValues.title}}</h5>
+            </a>
+            <p class="card-text">{{dataValues.description}}</p>
+        </div>
     </li>
     {{/each}}
 
 </ol>
-<ol>
-    Comments:
-    {{#each comments}}
-    <li>
-        {{dataValues.comment_text}}
-    </li>
-    {{/each}}
-</ol>
+{{else}}
+<p>Hello world!</p>
+{{/if}}
 
-<script>
-  
-</script>
