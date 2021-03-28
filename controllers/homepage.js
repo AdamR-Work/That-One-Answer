@@ -7,6 +7,7 @@ const withAuth = require('../utils/auth');
 router.get('/', (req, res) => {
     Answer.findAll({
         attributes: [
+            'id',
             'title',
             'description',
             'user_id',

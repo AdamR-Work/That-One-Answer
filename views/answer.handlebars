@@ -11,7 +11,14 @@
         <ol class="step-list">
             {{#each steps}}
             <li>
-                {{dataValues.step_text}}
+                <form class="new-comment">
+                {{dataValues.step_text}} <span class="comment_text">{{dataValues.comment_text}}</span>
+                <textarea class="" name="new-comment"></textarea>
+                <button type="commit-comment">Comment</button>
+                </form>
+                {{#if loggedIn}} 
+                {{/if}}
+                
             </li>
             {{/each}}
         </ol>

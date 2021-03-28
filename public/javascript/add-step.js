@@ -26,22 +26,21 @@ async function addStepsFormHandler(event) {
       }
     }
   }
-  // add comment
-  document.querySelector('.step-form').addEventListener('submit', addStepsFormHandler);
-  async function addStepsFormHandler(event) {
+  async function addCommentsFormHandler(event) {
     event.preventDefault();
   
-    const step_text = document.querySelector('textarea[name="step-text"]').value.trim();
+    const comment_text = document.querySelector('textarea[name="new-comment"]').value.trim();
     const answer_id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
   
-    if (step_text) {
-      const response = await fetch('/api/comment', {
+    if (comment_text) {
+      const response = await fetch('/api/step', {
         method: 'POST',
         body: JSON.stringify({
-          step_id,
-          step_text
+          comment_text,
+          steps_id,
+          answer_id
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -55,5 +54,7 @@ async function addStepsFormHandler(event) {
       }
     }
   }
+  
+  // document.querySelector('.new-comment').addEventListener('commit-comment', addCommentsFormHandler);
   
   document.querySelector('.step-form').addEventListener('submit', addStepsFormHandler);
