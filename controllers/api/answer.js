@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
+const withAuth = require('../../utils/auth');
 const { Answer, User, Category,Comments } = require('../../models');
 
 //.../api/answers ALL ANSWERs
@@ -30,11 +32,13 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
-router.post('/', (req, res) => {
+
+router.post('/', withAuth, (req, res) => {
     Answer.create({
+
         title: req.body.title,
         description: req.body.description,
-        user_id: req.body.user_id, //probably can be session
+        user_id: req.session.user_id, 
         category_id: req.body.category_id
     })
     .then(dbAnswerData => res.json(dbAnswerData))
@@ -77,7 +81,7 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
-router.put('/:id', (req, res) => {
+router.put('/:id',withAuth, (req, res) => {
     Answer.update(
         {
             title: req.body.title,
@@ -102,7 +106,7 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth,(req, res) => {
     Answer.destroy(
         {
             where: {
