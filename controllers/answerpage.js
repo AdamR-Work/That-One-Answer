@@ -33,9 +33,14 @@ router.get('/:id', (req, res) => {//change this to id
             }
         ]
     }).then(response => {
-        let hbsObj = response.dataValues
-        
-        res.render("answer", hbsObj)
+        let hbsObj = {
+            answer: response.dataValues,
+            loggedIn: req.session.loggedIn
+        }
+        console.log(hbsObj);
+
+        res.render("answer", hbsObj);
+
     })
 })
 
@@ -115,6 +120,9 @@ router.get('/user/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+
+
 
 
 module.exports = router;

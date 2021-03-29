@@ -37,8 +37,6 @@ router.get('/', (req, res) => {
 
         const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
         const myQuote = await resQuote.json();
-        
-        console.log("Quote--> " + myQuote);
 
         let hbsObj = {answers: tempResponse};
     
