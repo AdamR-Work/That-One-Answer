@@ -12,12 +12,12 @@ const flash = require('express-flash');
 
 const app = express();
 
-const intializePassword = require('./passport-config');
-intializePassword(
-  passport,
-  email => User.find(user=> User.email === email),
-  id => User.find(user=> User.id === id)
-)
+// const intializePassword = require('./passport-config');
+// intializePassword(
+//   passport,
+//   email => User.find(user=> User.email === email),
+//   id => User.find(user=> User.id === id)
+// )
 
 
 const PORT = process.env.PORT || 3001;
@@ -54,16 +54,20 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 // new way
-app.use(flash());
+// app.use(flash());
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret:'craggy-horizon',
   resave:false,
   saveUninitialized: false
 }));
-app.use(passport.initialize());
 app.use(passport.session());
+app.use( (req, res, next) => {
+  console.log('req.session', req.session);
+  return next()
+})
 //end
 app.use(require('./controllers/'));
 

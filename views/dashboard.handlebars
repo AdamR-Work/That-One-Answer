@@ -1,5 +1,7 @@
 <article class="wrapper">
-   
+   {{#if user}}
+   you are logged in via passport
+   {{/if}}
     
     <h1>Welcome back {{userPage.username}}. Weve missed you!</h1>
     <h2>Answers you've created.</h2>

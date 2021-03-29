@@ -16,8 +16,7 @@
                 <textarea class="" name="new-comment"></textarea>
                 <button type="commit-comment">Comment</button>
                 </form>
-                {{#if loggedIn}} 
-                {{/if}}
+                
                 
             </li>
             {{/each}}
@@ -33,7 +32,9 @@
                 <button type="submit">Add a step</button>
             </div>
         </form>
-    </div>
+    </div>{{#if user}} 
+                passport works
+                {{/if}}
     {{!-- <div>
         <button type="submit">Save Step</button>
     </div> --}}

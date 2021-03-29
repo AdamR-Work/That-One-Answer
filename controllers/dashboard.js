@@ -2,11 +2,13 @@ const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const sequelize = require('../config/connection');
 const {User, Answer, Comments, Steps, Category} = require("../models")
+const checkNotAuthenticated = require('../utils/notcheck');
+const checkAuthenticated = require('../utils/check');
 
 
 
 
-router.get('/', (req, res) => {
+router.get('/', checkAuthenticated, (req, res) => {
     User.findOne({
         where: {
             id: req.user
@@ -35,11 +37,7 @@ router.get('/', (req, res) => {
           }
         const userPage = dbUserData.get({ plain: true });
 
-        res.render('dashboard',{
-            userPage,
-            loggedIn: req.session.loggedIn
-
-        });
+        res.render('dashboard', userPage);
     })
     .catch(err => {
         console.log(err);
@@ -135,7 +133,7 @@ router.get('/', (req, res) => {
 // })
 
 
-router.get('/answer/:id', (req, res) => {
+router.get('/answer/:id', checkAuthenticated,(req, res) => {
     Answer.findOne({
         where: {
             id:req.params.id
@@ -157,10 +155,7 @@ router.get('/answer/:id', (req, res) => {
     }).then(response => {
         let hbsObj = response.get({plain:true});
     
-        res.render("answer",{
-           hbsObj, 
-           loggedIn:req.session.loggedIn
-        });
+        res.render("answer",hbsObj);
     })
     .catch(err => {
         console.log(err);

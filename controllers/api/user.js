@@ -3,7 +3,7 @@ const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 const bcrypt = require('bcrypt');
 const flash = require('express-flash');
-const passport = require('passport');
+const passport = require('../../validation');
 const checkNotAuthenticated = require('../../utils/notcheck');
 const checkAuthenticated = require('../../utils/check');
 
@@ -177,11 +177,14 @@ router.put('/', checkAuthenticated, (req, res) => {
 
 //NEW login with passport
 
-// router.post('/login', checkNotAuthenticated, ('local',{ 
-//   successRedirect: '/',
-//   failureRedirect: '/login',
-//   failureFlash: true
-// }));
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  console.log('logged in', req.body.email);
+  let userInfo = {
+    email: req.body.email
+  }
+  res.send(userInfo)
+}
+);
 
 // router.delete('/logout', checkAuthenticated, (req, res)=>{
 //   req.logOut()

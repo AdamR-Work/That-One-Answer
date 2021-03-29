@@ -2,6 +2,9 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 const { User, Answer, Comments, Category, Steps } = require('../../models');
+const checkNotAuthenticated = require('../../utils/notcheck');
+const checkAuthenticated = require('../../utils/check');
+
 
 //.../api/answers ALL ANSWERs
 router.get('/', (req, res) => {
@@ -70,13 +73,13 @@ router.get('/:id', (req, res) => {
     });
 });
 // Steps create a new one
-router.post('/', withAuth, (req, res) => {
+router.post('/', checkAuthenticated, (req, res) => {
     Steps.create(
         {
             answer_id: req.body.answer_id,
             step_text: req.body.step_text,
             step_number: req.body.step_number,
-            user_id: req.session.user_id
+            user_id: req.user
             
         }
         )
@@ -89,7 +92,7 @@ router.post('/', withAuth, (req, res) => {
 
 
 //   Steps update by id
-router.put('/:id',withAuth, (req, res) => {
+router.put('/:id',checkAuthenticated, (req, res) => {
    Steps.update({
         individualHooks:true,
         where: {
@@ -104,7 +107,7 @@ router.put('/:id',withAuth, (req, res) => {
 });
 
 // Steps destroy by id
-router.delete('/:id',withAuth, (req, res) => {
+router.delete('/:id',checkAuthenticated, (req, res) => {
     Steps.destroy(
         {
             where: {

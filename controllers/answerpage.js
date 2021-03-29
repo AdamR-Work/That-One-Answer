@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const {User, Answer, Comments,Steps, Category} = require("../models")
+const checkNotAuthenticated = require('../utils/notcheck');
+const checkAuthenticated = require('../utils/check');
+
 
 
 // Find one Answer and all its data to push to HB
