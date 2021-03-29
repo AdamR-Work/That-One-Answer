@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const sequelize = require('../config/connection');
-const {User, Answer, Comments, Steps, Category} = require("../models")
+const {User, Answer, Comments, Steps, Category} = require("../models");
+const fetch = require('node-fetch');
 
 
 
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
         include: [
             {
               model: Answer,
-              order:['created_at', 'ASC'],
+              order:['created_at', 'DEC'],
               attributes: ['created_at','id','title', 'description']
             },
             {
@@ -28,22 +29,26 @@ router.get('/', (req, res) => {
       
           ]
     })
-    .then(dbUserData => {
+    .then(async dbUserData => {
         if (!dbUserData) {
             res.status(404).json({ message: 'no data' });
             return;
           }
+
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
         const userPage = dbUserData.get({ plain: true });
 
         res.render('dashboard',{
             userPage,
+            quote: myQuote,
             loggedIn: req.session.loggedIn
-
         });
     })
     .catch(err => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(500).json(err + "shit");
       });
 });
 

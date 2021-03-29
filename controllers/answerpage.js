@@ -77,9 +77,15 @@ router.get('/category/:id', (req, res) => {
             }
         ]
     })
-    .then(response => {
-        // console.log(response);
-        let hbsObj = {answers: response};
+    .then(async response => {
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
+        let hbsObj = {
+            answers: response,
+            quote: myQuote,
+            loggedIn: req.session.loggedIn
+        };
         res.render('answer-by-category', hbsObj);
     })
     .catch(err => {
