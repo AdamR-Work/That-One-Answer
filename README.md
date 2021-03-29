@@ -34,13 +34,15 @@
 * [Heroku](https://dashboard.heroku.com/apps)
 * [Express Handlebars](https://www.npmjs.com/package/express-handlebars)
 * [node.bcrypt.js](https://www.npmjs.com/package/bcrypt)
+* [Node-Fetch /](https://www.npmjs.com/package/node-fetch)[ Node-Fetch GitHub](https://github.com/node-fetch/node-fetch)
+* [Ron Swanson Quotes API](https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api)
 
 ## Contributions & Contact Info
-* A Ramos find me on [GitHub - AdamR-Work](https://github.com/AdamR-Work)
-* M Kovacs find me on [GitHub - MylesKovacs](https://github.com/MylesKovacs)
-* J Krikelas find me on [GitHub - jkrikelas](https://github.com/jkrikelas)
-* C Bomm find me on [GitHub - robomojo77](https://github.com/robomojo77)
-* W Rowland find me on [GitHub - rolanduwxcc](https://github.com/rolanduwxcc)
+* Adam Ramos - [GitHub](https://github.com/AdamR-Work)
+* Myles Kovacs - [GitHub](https://github.com/MylesKovacs)
+* James Krikelas - [GitHub](https://github.com/jkrikelas)
+* C Bomm - [GitHub](https://github.com/robomojo77)
+* Warren Rowland - [GitHub](https://github.com/rolanduwxcc)
 
 ## Wireframe
 * [Mock Up User Profile creation](wireframe/images/Webpage-User-profile-creation.png)

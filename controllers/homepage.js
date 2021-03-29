@@ -37,8 +37,6 @@ router.get('/', (req, res) => {
 
         const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
         const myQuote = await resQuote.json();
-        
-        console.log("Quote--> " + myQuote);
 
         let hbsObj = {answers: tempResponse};
     
@@ -74,9 +72,16 @@ router.get('/category', (req,res)=> {
             'id',
             'category_name'
         ]
-    }).then(response => {
-        console.log(response)
-        let hbsObj = {categories: response}
+    }).then(async response => {
+
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
+        let hbsObj = {
+            categories: response,
+            quote: myQuote, 
+            loggedIn: req.session.loggedIn
+        };
         console.log(hbsObj)
         res.render("categories", hbsObj);
     });
@@ -84,10 +89,14 @@ router.get('/category', (req,res)=> {
 
 
 
-router.get('/create', withAuth, (req,res)=> {
+router.get('/create', withAuth, async (req,res)=> {
+    const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+    const myQuote = await resQuote.json();
+
     if (req.session.loggedIn){
         res.render("create",{
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            quote: myQuote
         } );
     }})
 

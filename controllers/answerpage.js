@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {User, Answer, Comments,Steps, Category} = require("../models")
-
+const fetch = require('node-fetch');
 
 // Find one Answer and all its data to push to HB
 router.get('/:id', (req, res) => {//change this to id
@@ -32,10 +32,20 @@ router.get('/:id', (req, res) => {//change this to id
                 attributes: ['category_name']
             }
         ]
-    }).then(response => {
-        let hbsObj = response.dataValues
+    }).then(async response => {
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
+        let hbsObj = {
+            answer: response.dataValues,
+            loggedIn: req.session.loggedIn,
+            quote: myQuote
+        };
         
-        res.render("answer", hbsObj)
+       
+
+        res.render("answer", hbsObj);
+
     })
 })
 
@@ -67,9 +77,15 @@ router.get('/category/:id', (req, res) => {
             }
         ]
     })
-    .then(response => {
-        // console.log(response);
-        let hbsObj = {answers: response};
+    .then(async response => {
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
+        let hbsObj = {
+            answers: response,
+            quote: myQuote,
+            loggedIn: req.session.loggedIn
+        };
         res.render('answer-by-category', hbsObj);
     })
     .catch(err => {
@@ -115,6 +131,9 @@ router.get('/user/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+
+
 
 
 module.exports = router;
