@@ -56,8 +56,14 @@
         </main>
 
         <br>
-        <footer>
-            Made with ❤ by Double Jeopardy
+        <footer class="card w-50">
+            <div class="card-header">Made with ❤ by Double Jeopardy</div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p id="quote">{{quote}}</p>
+                    <footer class="blockquote-footer">Ron Swanson</footer>
+                </blockquote>
+            </div>
         </footer>
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -69,7 +75,6 @@
         {{#if loggedIn}}
         <script src="/javascript/logout.js"></script>
         {{/if}}
-
     </div>
 </body>
 

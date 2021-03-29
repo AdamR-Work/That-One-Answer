@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const {User, Answer, Comments, Category} = require("../models")
 const withAuth = require('../utils/auth');
+const fetch = require('node-fetch');
+
+// const {getQuote} = require('../utils/quote');
 
 
 //-------Home Page - Shows All Answers
@@ -24,18 +27,23 @@ router.get('/', (req, res) => {
                 attributes: ['comment_text', 'steps_id']
             }
         ]
-    }).then(response => {
+    }).then(async response => {
 
         let tempResponse = [];
         for (let i = 0; i < 5; i++) {
             const element = response[i];
             tempResponse.push(element);
-        }             
-    
+        }     
+
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+        
+        console.log("Quote--> " + myQuote);
+
         let hbsObj = {answers: tempResponse};
     
         // res.render("homepage",{ hbsObj, loggedIn:req.session.loggedIn});
-        myObject = {hbsObj, loggedIn: req.session.loggedIn};
+        myObject = {hbsObj, loggedIn: req.session.loggedIn, quote: myQuote};
         console.log(myObject);
         res.render("homepage",myObject);
     })
@@ -44,6 +52,7 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
+
 
 //-------Log In Route
 router.get('/login', (req, res) => {
