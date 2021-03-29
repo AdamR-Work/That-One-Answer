@@ -34,7 +34,7 @@
 * [Heroku](https://dashboard.heroku.com/apps)
 * [Express Handlebars](https://www.npmjs.com/package/express-handlebars)
 * [node.bcrypt.js](https://www.npmjs.com/package/bcrypt)
-* [Node-Fetch](https://www.npmjs.com/package/node-fetch)/[Node-Fetch GitHub](https://github.com/node-fetch/node-fetch)
+* [Node-Fetch /](https://www.npmjs.com/package/node-fetch)[ Node-Fetch GitHub](https://github.com/node-fetch/node-fetch)
 * [Ron Swanson Quotes API](https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api)
 
 ## Contributions & Contact Info
