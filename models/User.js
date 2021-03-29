@@ -42,13 +42,6 @@ User.init(
     },
     {
       hooks: {
-        //hash a password before storing it
-        // beforeCreate(userData) {
-        //     return bcrypt.hash(userData.password, 10).then(hashedPassword => {
-        //         newUserData.password = hashedPassword;
-        //         return newUserData;
-        //     });
-        // }
         async beforeCreate(newUserData) {
             newUserData.password = await bcrypt.hash(newUserData.password, 10);
             return newUserData;
@@ -58,12 +51,6 @@ User.init(
             updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
             return updatedUserData;
         }
-        // ,
-        // //set up password on a bulkCreate
-        // async beforeBulkCreate(newUserData) {
-        //   newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        //   return newUserData;
-        // }
       },
         sequelize,
         timestamps: false,

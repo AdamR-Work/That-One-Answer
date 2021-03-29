@@ -135,34 +135,38 @@ router.get('/', (req, res) => {
 // })
 
 
-// router.get('/', (req, res) => {
-//     User.findOne({
-//         where: {
-//             id: 1   // this has to change to based off of user log in. its just hard coded atm
-//         },
-//         include: [
-//             {
-//                 model:Answer,
-//                 attributes: ['title', 'description']
-//             },
-//             {
-//                 model: Comments,
-//                 attributes: ['comment_text', 'steps_id']
-//             }
-//         ]
-//     }).then(response => {
-//         let hbsObj = response.get({plain:true});
+router.get('/answer/:id', (req, res) => {
+    Answer.findOne({
+        where: {
+            id:req.params.id
+         },
+        include: [
+            {
+                model:User,
+                attributes: ['id', 'username']
+            },
+            {
+                model: Comments,
+                attributes: ['comment_text', 'steps_id']
+            },
+            {
+              model:Steps,
+              attributes:['step_text', 'step_number']
+            }
+        ]
+    }).then(response => {
+        let hbsObj = response.get({plain:true});
     
-//         res.render("homepage",{
-//            hbsObj, 
-//            loggedIn:req.session.loggedIn
-//         });
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
+        res.render("answer",{
+           hbsObj, 
+           loggedIn:req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 // router.get('/login', (req, res) => {
 //     if (req.session.loggedIn) {
