@@ -15,7 +15,8 @@ const app = express();
 const intializePassword = require('./passport-config');
 intializePassword(
   passport,
-  email => User.find(user=> User.email === email)
+  email => User.find(user=> User.email === email),
+  id => User.find(user=> User.id === id)
 )
 
 

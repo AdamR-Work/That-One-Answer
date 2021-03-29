@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const {User, Answer, Comments, Category} = require("../models")
 const withAuth = require('../utils/auth');
-
-
+const checkNotAuthenticated = require('../utils/notcheck');
+const checkAuthenticated = require('../utils/check');
 //-------Home Page - Shows All Answers
 router.get('/', (req, res) => {
     Answer.findAll({
@@ -46,14 +46,15 @@ router.get('/', (req, res) => {
   });
 
 //-------Log In Route
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        console.log(req.session);
-        res.render('homepage', { loggedIn: req.session.loggedIn });
-        return;
+router.get('/login', checkNotAuthenticated,(req, res) => {
+    try {
+        res.render('dashboard')
+    }catch(err){
+     console.log(err)
     }
 
-    res.render('login');
+      res.render('login');  
+    
   });
 
 
@@ -71,11 +72,11 @@ router.get('/login', (req, res) => {
 //         res.render("create", hbsObj)
 //     })
 // })
-router.get('/create', withAuth, (req,res)=> {
-    if (req.session.loggedIn){
-        res.render("create",{
-            loggedIn: req.session.loggedIn
-        } );
-    }})
+// router.get('/create', withAuth, (req,res)=> {
+//     if (req.session.loggedIn){
+//         res.render("create",{
+//             loggedIn: req.session.loggedIn
+//         } );
+//     }})
 
 module.exports = router;

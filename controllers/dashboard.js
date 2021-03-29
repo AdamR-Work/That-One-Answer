@@ -9,7 +9,7 @@ const {User, Answer, Comments, Steps, Category} = require("../models")
 router.get('/', (req, res) => {
     User.findOne({
         where: {
-            id: req.session.user_id
+            id: req.user
         },
         attributes: [
             'username'

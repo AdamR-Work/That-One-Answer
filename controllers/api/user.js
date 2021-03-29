@@ -4,6 +4,8 @@ const withAuth = require('../../utils/auth');
 const bcrypt = require('bcrypt');
 const flash = require('express-flash');
 const passport = require('passport');
+const checkNotAuthenticated = require('../../utils/notcheck');
+const checkAuthenticated = require('../../utils/check');
 
 const { User, Answer, Comments, Category, Steps } = require('../../models');
 
@@ -110,7 +112,7 @@ router.post('/', async(req, res) => {
 });
 
 //Edit user
-router.put('/', (req, res) => {
+router.put('/', checkAuthenticated, (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
@@ -159,29 +161,33 @@ router.put('/', (req, res) => {
 //   });
 // });
 
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  }
-  else {
-    res.status(404).end();
-    console.log('not working---------------------');
-  }
-});
+// Old log out below
 
-//NEW Attempt and passport
+// router.post('/logout', (req, res) => {
+//   if (req.session.loggedIn) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   }
+//   else {
+//     res.status(404).end();
+//     console.log('not working---------------------');
+//   }
+// });
 
-router.post('/login', passport.authenticate('local',{ 
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
+//NEW login with passport
 
+// router.post('/login', checkNotAuthenticated, ('local',{ 
+//   successRedirect: '/',
+//   failureRedirect: '/login',
+//   failureFlash: true
+// }));
 
+// router.delete('/logout', checkAuthenticated, (req, res)=>{
+//   req.logOut()
+//   req.redirect('/login')
+// })
 
- 
 
 
 module.exports = router;

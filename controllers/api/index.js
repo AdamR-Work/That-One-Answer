@@ -1,7 +1,14 @@
 
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
+//need? below
 const withAuth = require('../../utils/auth');
+const checkNotAuthenticated = require('../../utils/notcheck');
+const checkAuthenticated = require('../../utils/check.js');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+//need? above
+
 // const { User, Answer, Comments, Category, Steps } = require('../../models');
 
 const answerRoutes = require('./answer');

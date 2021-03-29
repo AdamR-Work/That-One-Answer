@@ -2,6 +2,9 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 const { Answer, User, Category,Comments } = require('../../models');
+const passport = require('passport');
+const checkNotAuthenticated = require('../../utils/notcheck');
+const checkAuthenticated = require('../../utils/check');
 
 //.../api/answers ALL ANSWERs
 router.get('/', (req, res) => {
@@ -33,12 +36,12 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post('/', checkAuthenticated, (req, res) => {
     Answer.create({
 
         title: req.body.title,
         description: req.body.description,
-        user_id: req.session.user_id, 
+        user_id: req.user, 
         category_id: req.body.category_id
     })
     .then(dbAnswerData => res.json(dbAnswerData))
