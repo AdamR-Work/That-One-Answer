@@ -66,18 +66,22 @@ router.get('/login', (req, res) => {
 
 
 // -------Category Page Route   this needs to be changed to category. its half and half of two
-// router.get('/create', (req,res)=> {
-//     Category.findAll({
-//         attributes:[
-//             'id',
-//             'category_name'
-//         ]
-//     }).then(response => {
-//         let hbsObj = response.dataValues
-//         console.log(response.dataValues)
-//         res.render("create", hbsObj)
-//     })
-// })
+router.get('/category', (req,res)=> {
+    Category.findAll({
+        attributes:[
+            'id',
+            'category_name'
+        ]
+    }).then(response => {
+        console.log(response)
+        let hbsObj = {categories: response}
+        console.log(hbsObj)
+        res.render("categories", hbsObj);
+    });
+})
+
+
+
 router.get('/create', withAuth, (req,res)=> {
     if (req.session.loggedIn){
         res.render("create",{

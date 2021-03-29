@@ -41,6 +41,12 @@
 * J Krikelas find me on [GitHub - jkrikelas](https://github.com/jkrikelas)
 * C Bomm find me on [GitHub - robomojo77](https://github.com/robomojo77)
 * W Rowland find me on [GitHub - rolanduwxcc](https://github.com/rolanduwxcc)
+
+## Wireframe
+* [Mock Up User Profile creation](wireframe/images/Webpage-User-profile-creation.png)
+* [Mock Up Category User page](wireframe/images/Webpage-Category-User.png)
+* [Mock Up Categories page](wireframe/images/Webpage-Categories.pgn)
+* [Example of Database Wireframe](wireframe/images/dbwireframe.png)
   
 ## Screenshots
 * [Home Tab](assets/images/HomeTab.png)
