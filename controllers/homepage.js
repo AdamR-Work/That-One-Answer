@@ -72,9 +72,16 @@ router.get('/category', (req,res)=> {
             'id',
             'category_name'
         ]
-    }).then(response => {
-        console.log(response)
-        let hbsObj = {categories: response}
+    }).then(async response => {
+
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
+        let hbsObj = {
+            categories: response,
+            quote: myQuote, 
+            loggedIn: req.session.loggedIn
+        };
         console.log(hbsObj)
         res.render("categories", hbsObj);
     });

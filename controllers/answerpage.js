@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {User, Answer, Comments,Steps, Category} = require("../models")
-
+const fetch = require('node-fetch');
 
 // Find one Answer and all its data to push to HB
 router.get('/:id', (req, res) => {//change this to id
@@ -32,12 +32,17 @@ router.get('/:id', (req, res) => {//change this to id
                 attributes: ['category_name']
             }
         ]
-    }).then(response => {
+    }).then(async response => {
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
         let hbsObj = {
             answer: response.dataValues,
-            loggedIn: req.session.loggedIn
-        }
-        console.log(hbsObj);
+            loggedIn: req.session.loggedIn,
+            quote: myQuote
+        };
+        
+       
 
         res.render("answer", hbsObj);
 
