@@ -80,7 +80,6 @@ router.get('/category', (req,res)=> {
             quote: myQuote, 
             loggedIn: req.session.loggedIn
         };
-        console.log(hbsObj)
         res.render("categories", hbsObj);
     });
 })
@@ -94,7 +93,7 @@ router.get('/create', withAuth, (req,res)=> {
         const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
         const myQuote = await resQuote.json();
 
-        console.log({categories: response});
+        // console.log({categories: response});
         
         if (req.session.loggedIn){
             res.render("create",{

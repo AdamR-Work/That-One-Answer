@@ -34,7 +34,9 @@ router.get('/', (req, res) => {
 });
 // LEAVE THIS BELOW, This works
 router.post('/', withAuth, (req, res) => {
-    console.log(req.session.id)
+    console.log('---------------start of creating a post')
+    console.log(req.session.id);
+    console.log(req.body);
     Answer.create({
 
         title: req.body.title,

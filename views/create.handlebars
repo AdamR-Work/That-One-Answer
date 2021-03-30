@@ -1,31 +1,24 @@
 <form class="new">
-    <div class="mb-3">
-        <label for="cats">Choose a category:</label>
+    <div class="input-group mb-3">
 
-        <select name="formCats" id="formCats">
+        <span class="input-group-text" id="basic-addon1">Choose a category:</span>
+        <select class="form-control" name="formCats" id="new-answer-category">
             {{#each categories}}
             <option value={{this.dataValues.id}}>{{this.dataValues.category_name}}</option>
             {{/each}}
-            {{!-- <option value="1">A Fresh Install</option>
-            <option value="2">gitHub</option>
-            <option value="3">Html</option>
-            <option value="4">Css</option> --}}
         </select>
-        <label for="categoryToChoose" class="form-label">Category</label>
-
     </div>
 
-
     <div class="mb-3">
-        <label class="form-label">Enter the Title of your New Answer</label>
-        <textarea class="form-control" name="formTitle"></textarea>
+        <span class="input-group-text">Title</span>
+        <textarea id="new-answer-title" class="form-control" aria-label="With textarea"></textarea>
     </div>
     <div class="mb-3">
-        <label class="form-label">Give us quick description</label>
-        <textarea class="form-control" name="formDescription"></textarea>
+        <span class="input-group-text">Description</span>
+        <textarea id="new-answer-description" class="form-control" aria-label="With textarea"></textarea>
     </div>
     <div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button id="new-answer-btn" class="btn btn-secondary btn-lg" type="submit">Submit Answer</button>
     </div>
 </form>
 
