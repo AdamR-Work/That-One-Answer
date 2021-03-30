@@ -1,5 +1,6 @@
 //Creates the Answer page with the title and description
 
+
 async function addPage(event){
 
     event.preventDefault();
@@ -11,23 +12,45 @@ async function addPage(event){
     const response = await fetch(`/api/answer`,{
         method: 'POST',
         body: JSON.stringify({
-        
           title,
           description,
-         category_id
+          category_id
         }),
         headers: {
           'Content-Type': 'application/json'
         }
       });
-    
-    const newAnswer = await response.json();
-     console.log(newAnswer.id);
-     if (response.ok) {//trying to get it to create page after assigning title& description
-        document.location.replace('/answer/'+newAnswer.id)
+  
+      if (response.ok) {
+        document.location.replace('/dashboard');
       } else {
-        console.log(response)
-     -   alert(response.statusText);
+        alert(response.statusText);
       }
     }
+    
+
+    
+
     document.querySelector('.new').addEventListener('submit', addPage);
+
+// attempt 4
+     // const location = newAnswer.id;
+    //  if (response.ok) {//trying to get it to create page after assigning title& description
+    //      const newAnswer = await response.json();
+    
+    //     const newID = newAnswer.id;
+    //     console.log(newID)
+    //     res.render('/answer/'+newID)
+    //   } else {
+    //     // console.log(response)
+    //  -   alert(response.statusText);
+    //   }
+
+
+// attempt 6
+    // .then(dbnewAnswer => {
+    //   const answer = dbnewAnswer.map(answer => answer.get({plain:true}));
+    //   console.log(answer);
+    //   res.render('answer', answer);
+    // })
+  

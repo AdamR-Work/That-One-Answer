@@ -7,13 +7,16 @@ const fetch = require('node-fetch');
 
 
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
+    console.log(req.session);
+
     User.findOne({
         where: {
-            id: req.session.user_id
+            username: req.session.username
         },
         attributes: [
-            'username'
+            'username',
+            'id'
         ],
         include: [
             {
@@ -53,73 +56,73 @@ router.get('/', (req, res) => {
 });
 
 
-// router.get('/', (req, res) => {
-//     Answer.findOne({
-//         where: {
-//             id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
-//         },
-//         attributes:[
-//             'id',
-//             'title',
-//             'description'
+router.get('/:id', withAuth, (req, res) => {
+    Answer.findOne({
+        where: {
+            id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
+        },
+        attributes:[
+            'id',
+            'title',
+            'description'
 
-//         ],
-//         include: [
-//             {
-//                 model:User,
-//                 attributes: ['username']
-//             },
-//             {
-//                 model: Comments,
-//                 attributes: ['comment_text', 'steps_id']
-//             },
-//             {
-//                 model: Steps,
-//                 attributes:['step_text', 'step_number']
-//             }
-//         ]
-//     }).then(response => {
-//         let hbsObj = response.dataValues
-//         console.log(response.dataValues)
-//         res.render("answer", hbsObj)
-//     })
-// })
+        ],
+        include: [
+            {
+                model:User,
+                attributes: ['username']
+            },
+            {
+                model: Comments,
+                attributes: ['comment_text', 'steps_id']
+            },
+            {
+                model: Steps,
+                attributes:['step_text', 'step_number']
+            }
+        ]
+    }).then(response => {
+        let hbsObj = response.dataValues
+        console.log(response.dataValues)
+        res.render("answer", hbsObj)
+    })
+})
 
 
-// // below this  
+// below this  
 
-// router.get('/', withAuth, (req, res) => {
-//     User.findOne({
-//         where: {
-//             id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
-//         },
-//         include: [
-//             {
-//                 model:Answer,
-//                 attributes: ['title', 'description']
-//             },
-//             {
-//                 model: Comments,
-//                 attributes: ['comment_text', 'steps_id']
-//             }
-//         ]
-//     }).then(response => {
-//         let hbsObj = response.get({plain:true});
+router.get('/', withAuth, (req, res) => {
+    User.findOne({
+        where: {
+            id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
+        },
+        include: [
+            {
+                model:Answer,
+                attributes: ['title', 'description']
+            },
+            {
+                model: Comments,
+                attributes: ['comment_text', 'steps_id']
+            }
+        ]
+    }).then(response => {
+        let hbsObj = response.get({plain:true});
     
-//         res.render("homepage",{
-//            hbsObj, 
-//            loggedIn:req.session.loggedIn
-//         });
-//     })
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
+        res.render("homepage",{
+           hbsObj, 
+           loggedIn:req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 // router.get('/login', (req, res) => {
 //     if (req.session.loggedIn) {
-//       res.redirect('/');
+//       res.render('/dashboard');
 //       return;
 //     }
   
@@ -169,26 +172,21 @@ router.get('/', (req, res) => {
 //       });
 //   });
 
-// router.get('/login', (req, res) => {
-//     if (req.session.loggedIn) {
-//       res.redirect('/');
-//       return;
-//     }
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
   
-//     res.render('login');
-//   });
+    res.render('login');
+  });
 
-// router.get('/create', (req,res)=> {
-//     Category.findAll({
-//         attributes:[
-//             'id',
-//             'category_name'
-//         ]
-//     }).then(response => {
-//         let hbsObj = response.dataValues
-//         console.log(response.dataValues)
-//         res.render("create", hbsObj)
-//     })
-// })
+router.get('/create',withAuth, (req,res)=> {
+    if (req.session.loggedIn){
+    res.redirect('/create');
+}
+  res.redirect('/login')
+
+})
 
 module.exports = router;
