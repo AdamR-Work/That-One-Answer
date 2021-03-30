@@ -17,9 +17,9 @@ User.hasMany(Answer, {
 User.hasMany(Comments, {
     foreignKey: 'user_id'
 });
-// User.hasMany(Steps, {
-//     foreignKey: 'user_id'
-// });
+User.hasMany(Steps, {
+    foreignKey: 'user_id'
+});
 
 // //Answer associations
 Answer.belongsTo(Category, {
@@ -34,13 +34,13 @@ Answer.belongsTo(User, {
  });
 
 // //Steps associations
-// Steps.belongsTo(User, {
-//     foreignKey: 'user_id',
-//     onDelete: 'cascade'
-// });
-// Steps.belongsTo(Answer, {
-//     foreignKey: 'answer_id',
-// });
+Steps.belongsTo(User, {
+    foreignKey: 'user_id',
+
+});
+Steps.belongsTo(Answer, {
+    foreignKey: 'answer_id',
+});
 Steps.hasMany(Comments, {
     foreignKey: 'steps_id',
     onDelete: 'cascade'
@@ -48,14 +48,11 @@ Steps.hasMany(Comments, {
 
 
 // //Comments associations
-// Comments.belongsTo(User, {
-//     foreignKey: 'user_id',
-//     onDelete: 'cascade'
-// });
-// Comments.belongsTo(Steps, {
-//     foreignKey: 'steps_id',
-//     onDelete: 'cascade'
-// });
+Comments.belongsTo(User, {
+    foreignKey: 'user_id',
+   
+});
+
 
 //Category associations
  Category.hasMany(Answer, {
@@ -75,4 +72,8 @@ Comments.belongsTo(Steps,{
 Answer.hasMany(Comments,{
     foreignKey:'answer_id'
 })
+
+Comments.belongsTo(Answer, {
+    foreignKey: 'steps_id',
+});
 module.exports = {User, Answer, Steps, Category, Comments};
