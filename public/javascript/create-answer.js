@@ -1,9 +1,9 @@
 //Creates the Answer page with the title and description
 async function addPage(event){
   event.preventDefault();
-  const title = document.querySelector('#new-answer-category').value;
-  const description = document.querySelector('#new-answer-title').value;
-  const category_id = document.querySelector('#new-answer-description').value;
+  const category_id = document.querySelector('#new-answer-category').value;
+  const title = document.querySelector('#new-answer-title').value;
+  const description = document.querySelector('#new-answer-description').value;
   
   // ADD THE Page.data via the route 
   const response = await fetch('/api/answer',{
@@ -22,7 +22,7 @@ async function addPage(event){
       const newAnswer = await response.json();
       const newId = newAnswer.id;
 
-      document.location.replace('/answer/'+newId);
+      document.location.replace('/answer/'+ newId);
     } else {
       alert(response.statusText);
     }
