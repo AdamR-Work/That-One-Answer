@@ -87,15 +87,23 @@ router.get('/category', (req,res)=> {
 
 
 
-router.get('/create', withAuth, async (req,res)=> {
-    const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
-    const myQuote = await resQuote.json();
+router.get('/create', withAuth, (req,res)=> {
+    //get categories to fill the drop down
+    Category.findAll({attributes:['id','category_name']})
+    .then(async response => {
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
 
-    if (req.session.loggedIn){
-        res.render("create",{
-            loggedIn: req.session.loggedIn,
-            quote: myQuote
-        } );
-    }})
+        console.log({categories: response});
+        
+        if (req.session.loggedIn){
+            res.render("create",{
+                categories: response,
+                loggedIn: req.session.loggedIn,
+                quote: myQuote
+            });
+        }
+    });
+})
 
 module.exports = router;
