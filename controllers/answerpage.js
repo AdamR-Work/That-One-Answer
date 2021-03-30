@@ -36,13 +36,14 @@ router.get('/:id', (req, res) => {//change this to id
         const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
         const myQuote = await resQuote.json();
 
+        
         let hbsObj = {
             answer: response.dataValues,
             loggedIn: req.session.loggedIn,
             quote: myQuote
         };
         
-       
+       console.log(hbsObj)
 
         res.render("answer", hbsObj);
 
