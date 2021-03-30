@@ -26,19 +26,23 @@ router.get('/', (req, res) => {
                 model: Comments,
                 attributes: ['comment_text', 'steps_id']
             }
-        ]
+        ],
+        order: [
+            ['created_at', 'DESC']
+        ],
+        limit: 6
     }).then(async response => {
 
-        let tempResponse = [];
-        for (let i = 0; i < 5; i++) {
-            const element = response[i];
-            tempResponse.push(element);
-        }     
+        // let tempResponse = [];
+        // for (let i = 0; i < 5; i++) {
+        //     const element = response[i];
+        //     tempResponse.push(element);
+        // }     
 
         const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
         const myQuote = await resQuote.json();
 
-        let hbsObj = {answers: tempResponse};
+        let hbsObj = {answers: response};
     
         // res.render("homepage",{ hbsObj, loggedIn:req.session.loggedIn});
         myObject = {hbsObj, loggedIn: req.session.loggedIn, quote: myQuote};
@@ -89,20 +93,15 @@ router.get('/category', (req,res)=> {
 
 
 
-// router.get('/create', withAuth, async (req,res)=> {
-//     const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
-//     const myQuote = await resQuote.json();
+router.get('/create', withAuth, async (req,res)=> {
+    const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+    const myQuote = await resQuote.json();
 
-//     if (req.session.loggedIn){
-//         res.render("create",{
-//             loggedIn: req.session.loggedIn,
-//             quote: myQuote
-//         } );
-//     }})
+    if (req.session.loggedIn){
+        res.render("create",{
+            loggedIn: req.session.loggedIn,
+            quote: myQuote
+        } );
+    }})
 
-    router.get('/create', withAuth, (req,res)=> {
-        {
-            res.render("create", {loggedIn:true}  );
-           
-        }})
 module.exports = router;

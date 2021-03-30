@@ -21,7 +21,6 @@ router.get('/', withAuth, (req, res) => {
         include: [
             {
               model: Answer,
-              order:['created_at', 'DEC'],
               attributes: ['created_at','id','title', 'description']
             },
             {
@@ -30,7 +29,11 @@ router.get('/', withAuth, (req, res) => {
       
             }
       
-          ]
+        ],
+        order: [
+            [Answer, 'created_at', 'DESC'],
+            [Comments, 'created_at', 'DESC']
+        ]
     })
     .then(async dbUserData => {
         if (!dbUserData) {
@@ -91,6 +94,7 @@ router.get('/:id', withAuth, (req, res) => {
 
 // below this  
 
+//////WLR -- DELETING THIS IS DUPLICATE OF MAIN ROUTE ABOVE, NEVER WILL WORK
 // router.get('/', withAuth, (req, res) => {
 //     User.findOne({
 //         where: {
@@ -172,21 +176,21 @@ router.get('/:id', withAuth, (req, res) => {
 //       });
 //   });
 
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
+// router.get('/login', (req, res) => {
+//     if (req.session.loggedIn) {
+//       res.redirect('/');
+//       return;
+//     }
   
-    res.render('login');
-  });
+//     res.render('login');
+//   });
 
-router.get('/create',withAuth, (req,res)=> {
-    if (req.session.loggedIn){
-    res.redirect('/create');
-}
-  res.redirect('/login')
+// router.get('/create',withAuth, (req,res)=> {
+//     if (req.session.loggedIn){
+//     res.redirect('/create');
+// }
+//   res.redirect('/login')
 
-})
+// })
 
 module.exports = router;
