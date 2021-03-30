@@ -71,7 +71,7 @@ router.get('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
+//  LEAVE THIS BELOW
 //Create a User
 router.post('/', (req, res) => {
   User.create({
@@ -81,9 +81,10 @@ router.post('/', (req, res) => {
   })
     .then(dbUserData => {
       req.session.save(() => {
-        req.session.id = dbUserData.id;
+        req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
-        req.session.email = dbUserData.email;
+        // req.session.email = dbUserData.email;
+        req.session.loggedIn = true;
 
 
         res.json(dbUserData);
@@ -94,7 +95,7 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
-
+//LEAVE THIS ABOVE
 //Edit user
 router.put('/', (req, res) => {
   User.update(req.body, {

@@ -32,8 +32,9 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
-
+// LEAVE THIS BELOW, This works
 router.post('/', withAuth, (req, res) => {
+    console.log(req.session.id)
     Answer.create({
 
         title: req.body.title,
@@ -47,7 +48,7 @@ router.post('/', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
-
+// LEAVE THIS ABO
 
 //.../api/answers/id ANSWERs BY ID
 router.get('/:id', (req, res) => {
@@ -81,7 +82,7 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
-router.put('/:id',withAuth, (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Answer.update(
         {
             title: req.body.title,

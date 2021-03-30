@@ -1,4 +1,4 @@
-// add step
+// ADD STEP
 async function addStepsFormHandler(event) {
     event.preventDefault();
   
@@ -26,6 +26,8 @@ async function addStepsFormHandler(event) {
       }
     }
   }
+
+  // ADD COMMENT
   async function addCommentsFormHandler(event) {
     event.preventDefault();
   
@@ -35,7 +37,7 @@ async function addStepsFormHandler(event) {
     ];
   
     if (comment_text) {
-      const response = await fetch('/api/step', {
+      const response = await fetch('/api/comment', {
         method: 'POST',
         body: JSON.stringify({
           comment_text,
@@ -55,6 +57,6 @@ async function addStepsFormHandler(event) {
     }
   }
   
-  // document.querySelector('.new-comment').addEventListener('commit-comment', addCommentsFormHandler);
+  document.querySelector('.new-comment').addEventListener('commit-comment', addCommentsFormHandler);
   
   document.querySelector('.step-form').addEventListener('submit', addStepsFormHandler);

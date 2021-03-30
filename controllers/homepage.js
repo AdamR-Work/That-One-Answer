@@ -89,15 +89,20 @@ router.get('/category', (req,res)=> {
 
 
 
-router.get('/create', withAuth, async (req,res)=> {
-    const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
-    const myQuote = await resQuote.json();
+// router.get('/create', withAuth, async (req,res)=> {
+//     const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+//     const myQuote = await resQuote.json();
 
-    if (req.session.loggedIn){
-        res.render("create",{
-            loggedIn: req.session.loggedIn,
-            quote: myQuote
-        } );
-    }})
+//     if (req.session.loggedIn){
+//         res.render("create",{
+//             loggedIn: req.session.loggedIn,
+//             quote: myQuote
+//         } );
+//     }})
 
+    router.get('/create', withAuth, (req,res)=> {
+        {
+            res.render("create", {loggedIn:true}  );
+           
+        }})
 module.exports = router;

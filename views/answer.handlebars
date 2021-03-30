@@ -8,20 +8,17 @@
             {{#each steps}}
             <li class="list-group-item">
                 {{dataValues.step_text}}
-                <form>
+
+                {{>eachcomment comment}}
+               
+                <form class = "new-comment">
                     <div class="mb-3">
-                       <label for="feedback" class="form-label">Feedback</label>
+                       {{!-- <label for="feedback" class="form-label">Feedback</label> --}}
                        <textarea class="form-control" name="new-comment"></textarea> 
                     </div>
-                    <button type="submit" class="btn btn-primary">Comment</button>
+                    <button type="commit-comment" class="btn btn-primary">Comment</button>
                 </form>
-                {{!-- <form class="new-comment">
-                 <span class="comment_text">{{dataValues.comment_text}}</span>
-                <textarea class="" name="new-comment"></textarea>
-                <button type="commit-comment">Comment</button>
-                </form>
-                {{#if loggedIn}} 
-                {{/if}}    --}}
+                
             </li>
             {{/each}}
         </ol>
@@ -40,7 +37,19 @@
     {{!-- <div>
         <button type="submit">Save Step</button>
     </div> --}}
+    {{#if hbsObj.loggedIn}} 
+                hello
+                {{/if}}   
 </article>
 {{/with}}
 
 <script src="/javascript/add-step.js"></script>
+
+
+
+
+                {{!-- <form class="new-comment">
+                 <span class="comment_text">{{dataValues.comment_text}}</span>
+                <textarea class="" name="new-comment"></textarea>
+                <button type="commit-comment">Comment</button>
+                </form> --}}
