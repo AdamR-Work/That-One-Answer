@@ -74,32 +74,25 @@ router.get('/:id', (req, res) => {
 
 // Comment Create a new one
 router.post('/', withAuth,(req, res) => {
-    Comment.create({
+    Comments.create({
         
-      user_id: req.session.id,
+      user_id: req.body.user_id,
       steps_id: req.body.steps_id,
-      comment_text: req.body.comment_text
+      comment_text: req.body.comment_text,
+      // answer_id: req.body.comment_text
       
     })
-      .then(dbCommentData => {
-        req.session.save(() => {
-          req.session.id = dbCommentData.id;
-          req.session.username = dbCommentData.username;
-          req.session.email = dbCommentData.email;
-  
-  
-          res.json(dbCommentData);
-        });
-      })
-      .catch(err => {
+    .then(dbCommentData => res.json(dbCommentData))
+
+    .catch(err => {
         console.log(err);
         res.status(500).json(err);
-      });
-  });
+    });
+});
   
   // Comment Edit 
   router.put('/:id',withAuth, (req, res) => {
-    Comment.update(req.body, {
+    Comments.update(req.body, {
       individualHooks: true,
       where: {
         id: req.params.id

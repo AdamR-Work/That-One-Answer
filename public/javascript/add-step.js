@@ -57,6 +57,6 @@ async function addStepsFormHandler(event) {
     }
   }
   
-  document.querySelector('.new-comment').addEventListener('commit-comment', addCommentsFormHandler);
+  // document.querySelector('.new-comment').addEventListener('commit-comment', addCommentsFormHandler);
   
   document.querySelector('.step-form').addEventListener('submit', addStepsFormHandler);

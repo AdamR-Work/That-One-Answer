@@ -16,10 +16,10 @@ router.get('/', (req, res) => {
         ],
        
         include: [
-            {
-                model: User,
-                attributes: ['username', 'email', 'id']
-            },
+            // {
+            //     model: User,
+            //     attributes: ['username', 'email', 'id']
+            // },
             {
                 model: Answer,
                 attributes: ['title','description','user_id']
@@ -38,7 +38,11 @@ router.get('/', (req, res) => {
 });
 // Steps find one by id
 router.get('/:id', (req, res) => {
+
     Steps.findOne({
+        where:{
+            id: req.params.id
+        },
         attributes: [
             'id',
             'step_text',
@@ -81,6 +85,7 @@ router.post('/', withAuth, (req, res) => {
         }
         )
     .then(dbStepData => res.json(dbStepData))
+
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
