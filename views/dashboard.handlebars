@@ -1,18 +1,19 @@
-<article class="wrapper">
+<article class="container wrapper">
     <h1>Welcome back {{userPage.username}}. We've missed you!</h1>
     <h2>Answers you've created.</h2>
-    <ol class="answer-list">
-        {{#each userPage.answers}}
-        <li class="card w-50">
-            <div class="card-body text-align-left">
-                <a class="card-title nav-link" href="/answer/{{id}}"><h5>{{title}}</h5></a>
-                <p class="card-text nav-link">{{description}} 
-                <a href="/answer/{{id}}">{{format_date created_at}}</a></p>
-            </div>
+        <ol class="row answer-list">
+            {{#each userPage.answers}}
+            <li class="card">
+                <div class="card-body text-align-left">
+                    <a class="card-title nav-link" href="/answer/{{id}}"><h5>{{title}}</h5></a>
+                    <p class="card-text nav-link">{{description}} 
+                    <a href="/answer/{{id}}">{{format_date created_at}}</a></p>
+                </div>
 
-        </li>
-        {{/each}}
-    </ol>
+            </li>
+            {{/each}}
+        </ol>
+
 
     <h2>Answers you've commented on.</h2>
 
