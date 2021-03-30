@@ -21,18 +21,17 @@ router.get('/', withAuth, (req, res) => {
         include: [
             {
               model: Answer,
-              attributes: ['created_at','id','title', 'description']
+              attributes: ['id','title', 'description','created_at']
             },
             {
               model: Comments,
               attributes: ['comment_text', 'steps_id',"created_at"]
-      
             }
       
         ],
         order: [
-            [Answer, 'created_at', 'DESC'],
-            [Comments, 'created_at', 'DESC']
+            [Answer, 'created_at', 'DESC']
+            // [Comments, 'created_at', 'DESC']
         ]
     })
     .then(async dbUserData => {
@@ -92,9 +91,8 @@ router.get('/:id', withAuth, (req, res) => {
 })
 
 
-// below this  
 
-//////WLR -- DELETING THIS IS DUPLICATE OF MAIN ROUTE ABOVE, NEVER WILL WORK
+//////WLR -- DO WE REALLY NEED THE REST OF THESE, THIS ONE RIGHT BELOW SHOULD BE DELETED OR PATH UPDATED TO BE UNIQUE IF SO
 // router.get('/', withAuth, (req, res) => {
 //     User.findOne({
 //         where: {

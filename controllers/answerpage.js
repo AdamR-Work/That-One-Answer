@@ -114,8 +114,7 @@ router.get('/user/:id', (req, res) => {
         include: [
             {
                 model: User,
-                attributes: ['username'],
-                limit: 5
+                attributes: ['username']
             },
             {
                 model: Category,

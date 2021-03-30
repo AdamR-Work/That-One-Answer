@@ -33,12 +33,6 @@ router.get('/', (req, res) => {
         limit: 6
     }).then(async response => {
 
-        // let tempResponse = [];
-        // for (let i = 0; i < 5; i++) {
-        //     const element = response[i];
-        //     tempResponse.push(element);
-        // }     
-
         const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
         const myQuote = await resQuote.json();
 
