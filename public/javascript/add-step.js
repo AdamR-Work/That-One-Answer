@@ -2,11 +2,11 @@
 async function addStepsFormHandler(event) {
     event.preventDefault();
   
-    const step_text = document.querySelector('textarea[name="step-text"]').value.trim();
+    const step_text = document.querySelector('#new-step').value.trim();
     const answer_id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
-  
+    console.log(step_text + " -- " + answer_id);
     if (step_text) {
       const response = await fetch('/api/step', {
         method: 'POST',
@@ -20,7 +20,7 @@ async function addStepsFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.reload();
+        // document.location.reload();
       } else {
         alert(response.statusText);
       }
@@ -59,4 +59,4 @@ async function addStepsFormHandler(event) {
   
   // document.querySelector('.new-comment').addEventListener('commit-comment', addCommentsFormHandler);
   
-  document.querySelector('.step-form').addEventListener('submit', addStepsFormHandler);
+  document.querySelector('#new-step-btn').addEventListener('submit', addStepsFormHandler);

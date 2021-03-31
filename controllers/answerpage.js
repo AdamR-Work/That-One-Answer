@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {//change this to id
             quote: myQuote
         };
         
-       console.log(hbsObj)
+    //    console.log(hbsObj)
 
         res.render("answer", hbsObj);
 
