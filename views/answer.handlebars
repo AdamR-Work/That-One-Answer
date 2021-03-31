@@ -1,44 +1,35 @@
 {{#with answer}}
-<article class="card">
-    <div class="card-body">
-        <h5 class="card-title">{{title}}</h5>
-        <p class="card-text">{{description}}</p>
+<form class="text-dark bg-light" >
+    <div class="input-group mb-3">
+        <span class="input-group-text">Title</span>
+        <span class="form-control">{{title}}</span>
     </div>
-        <ol class="list-group list-group-flush">
-            {{#each steps}}
-            <li class="list-group-item">
-                {{dataValues.step_text}}
 
-                {{>eachcomment comment}}
-               
-                <form class = "new-comment">
-                    <div class="mb-3">
-                       {{!-- <label for="feedback" class="form-label">Feedback</label> --}}
-                       <textarea class="form-control" name="new-comment"></textarea> 
-                    </div>
-                    <button type="commit-comment" class="btn btn-primary">Comment</button>
-                </form>
-                
-            </li>
-            {{/each}}
-        </ol>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Description</span>
+        <span class="form-control">{{description}}</span>
+    </div>
+
+    {{#each steps}}
+    <div class="input-group mb-3">
+        <span class="input-group-text">Step {{@index}}</span>
+        <span class="form-control">{{dataValues.step_text}}</span>
+    </div>
+    {{/each}}
+
+    <div class="input-group mb-3 step-form">
+        <span class="input-group-text strong"><strong>Enter a new step</strong></span>
+        <textarea id="new-step" name="step-text" class="form-control" aria-label="With textarea"></textarea>
+    </div>
 
     <div>
-        <form class="step-form">
-            <div>
-                <textarea name="step-text"></textarea>
-            </div>
-
-            <div>
-                <button type="submit">Add a step</button>
-            </div>
-        </form>
+        <button id="new-step-btn" class="btn btn-secondary btn-lg" type="submit">Add Step</button>
     </div>
-
+    
     {{#if hbsObj.loggedIn}} 
                 hello
                 {{/if}}   
-</article>
+</form>
 {{/with}}
 
 <script src="/javascript/add-step.js"></script>
