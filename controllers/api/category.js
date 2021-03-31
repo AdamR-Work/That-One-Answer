@@ -26,4 +26,26 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req,res)=> {
+    Category.findOne({
+        where:{
+            id: req.params.id
+        },
+        attributes:[
+            'id',
+            'category_name'
+        ],
+        include:[
+            {
+                model: Answer,
+                attributes:['title','id','description']
+            }
+        ]
+    })
+    .then(dbCategoryData => res.json(dbCategoryData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
 module.exports = router;

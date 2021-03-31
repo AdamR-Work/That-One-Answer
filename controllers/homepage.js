@@ -80,10 +80,42 @@ router.get('/category', (req,res)=> {
             quote: myQuote, 
             loggedIn: req.session.loggedIn
         };
+
         res.render("categories", hbsObj);
+
     });
 })
 
+
+router.get('/category/:id', (req,res)=> {
+    Category.findOne({
+        where:{
+            id: req.params.id
+        },
+        attributes:[
+            'id',
+            'category_name'
+        ],
+        include:[
+            {
+                model: Answer,
+                attributes:['title','id','description']
+            }
+        ]
+    }).then(async response => {
+
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json();
+
+        let hbsObj = {
+            categories: response,
+            quote: myQuote, 
+            loggedIn: req.session.loggedIn
+        };
+        console.log(hbsObj)
+        res.render("catnext", hbsObj);
+    });
+})
 
 
 router.get('/create', withAuth, (req,res)=> {
