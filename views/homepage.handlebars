@@ -8,7 +8,7 @@
                     <a class="card-title nav-link" href="/answer/{{dataValues.id}}">
                     <h5 class="card-title">{{dataValues.title}}</h5>
                     </a>
-                    <p class="card-text">{{dataValues.description}}</p>
+                    <p class="card-text">{{dataValues.description}} - Created on {{format_date dataValues.created_at}}</p>
                 </div>
             </li>
             {{/each}}
