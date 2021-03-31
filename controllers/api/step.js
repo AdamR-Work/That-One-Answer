@@ -75,6 +75,7 @@ router.get('/:id', (req, res) => {
 });
 // Steps create a new one
 router.post('/', withAuth, (req, res) => {
+    console.log("wlr ---" + req.body);
     Steps.create(
         {
             answer_id: req.body.answer_id,
@@ -90,6 +91,7 @@ router.post('/', withAuth, (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
+    console.log("wlr ---" + req.body);
 });
 
 
