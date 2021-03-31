@@ -21,16 +21,18 @@ router.get('/', withAuth, (req, res) => {
         include: [
             {
               model: Answer,
-              order:['created_at', 'DEC'],
-              attributes: ['created_at','id','title', 'description']
+              attributes: ['id','title', 'description','created_at']
             },
             {
               model: Comments,
               attributes: ['comment_text', 'steps_id',"created_at"]
-      
             }
       
-          ]
+        ],
+        order: [
+            [Answer, 'created_at', 'DESC']
+            // [Comments, 'created_at', 'DESC']
+        ]
     })
     .then(async dbUserData => {
         if (!dbUserData) {
@@ -89,36 +91,36 @@ router.get('/:id', withAuth, (req, res) => {
 })
 
 
-// below this  
 
-router.get('/', withAuth, (req, res) => {
-    User.findOne({
-        where: {
-            id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
-        },
-        include: [
-            {
-                model:Answer,
-                attributes: ['title', 'description']
-            },
-            {
-                model: Comments,
-                attributes: ['comment_text', 'steps_id']
-            }
-        ]
-    }).then(response => {
-        let hbsObj = response.get({plain:true});
+//////WLR -- DO WE REALLY NEED THE REST OF THESE, THIS ONE RIGHT BELOW SHOULD BE DELETED OR PATH UPDATED TO BE UNIQUE IF SO
+// router.get('/', withAuth, (req, res) => {
+//     User.findOne({
+//         where: {
+//             id: req.session.id   // this has to change to based off of user log in. its just hard coded atm
+//         },
+//         include: [
+//             {
+//                 model:Answer,
+//                 attributes: ['title', 'description']
+//             },
+//             {
+//                 model: Comments,
+//                 attributes: ['comment_text', 'steps_id']
+//             }
+//         ]
+//     }).then(response => {
+//         let hbsObj = response.get({plain:true});
     
-        res.render("homepage",{
-           hbsObj, 
-           loggedIn:req.session.loggedIn
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+//         res.render("homepage",{
+//            hbsObj, 
+//            loggedIn:req.session.loggedIn
+//         });
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//       });
+//   });
 
 // router.get('/login', (req, res) => {
 //     if (req.session.loggedIn) {
@@ -172,21 +174,21 @@ router.get('/', withAuth, (req, res) => {
 //       });
 //   });
 
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
+// router.get('/login', (req, res) => {
+//     if (req.session.loggedIn) {
+//       res.redirect('/');
+//       return;
+//     }
   
-    res.render('login');
-  });
+//     res.render('login');
+//   });
 
-router.get('/create',withAuth, (req,res)=> {
-    if (req.session.loggedIn){
-    res.redirect('/create');
-}
-  res.redirect('/login')
+// router.get('/create',withAuth, (req,res)=> {
+//     if (req.session.loggedIn){
+//     res.redirect('/create');
+// }
+//   res.redirect('/login')
 
-})
+// })
 
 module.exports = router;

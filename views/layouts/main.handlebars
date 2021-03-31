@@ -14,13 +14,10 @@
 </head>
 
 <body>
-    <div class="container-lg">
+    <div class="container-fluid">
         <header class="row">
-            <h1 class="col-sm">
-                <a href="/">That One Answer</a>
-            </h1>
 
-            <nav class="nav justify-content-begin">
+            <nav class="nav navbar-expand-lg navbar-light bg-light justify-content-begin">
                 <div class="nav-item">
                     <a class="nav-link col-sm active" aria-current="page" href="/">Home</a>
                 </div>
@@ -33,7 +30,7 @@
                 </div>
 
                 <div class="nav-item">
-                    <a class="nav-link active" href="/create">Share Answer</a>
+                    <a class="nav-link active" href="/create">Create</a>
                 </div>
                 <div class="nav-item">
                     <button class="logout btn btn-no-style" id="logout">Logout</button>
@@ -48,13 +45,17 @@
                 {{> searchbar}}
                  
             </nav>
+
+            <h1 class="col-sm">
+                <a class="nav-link"href="/">That One Answer</a>
+            </h1>
         </header>
         <main>
             {{{ body }}}
         </main>
 
         <br>
-        <footer class="card w-50">
+        <footer class="card">
             <div class="card-header">Made with ❤ by Double Jeopardy</div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
