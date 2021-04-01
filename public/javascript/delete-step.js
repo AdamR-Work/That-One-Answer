@@ -4,7 +4,9 @@ const wrapper = document.getElementById('wrapper');
 async function removeStep(event){
   event.preventDefault()
 
-  const pingInfo= event.target.id
+  const pingInfo = event.target.id
+  console.log(pingInfo)
+  
     if (isNaN(pingInfo)) {
       return;
     }
