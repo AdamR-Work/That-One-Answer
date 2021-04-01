@@ -51,11 +51,9 @@
 * [Example of Database Wireframe](wireframe/images/dbwireframe.png)
   
 ## Screenshots
-* [Home Tab](assets/images/HomeTab.png)
-* [Dashboard Tab](assets/images/dashboardLoggedIn.png)
-* [Comments Not Logged In](assets/images/CommentsViewNotLoggedIn.png)
-* [Comments Logged In View](assets/images/AddingCommentLoggedInOption.png)
-* [Login/Sign View](assets/images/loginSignupPage.png)
+* [Home Tab](wireframe/images/HomePage.JPG)
+* [Dashboard Tab](wireframe/images/Dashboard.JPG)
+* [Login/Sign View](wireframe/images/Login.JPG)
 
 ## License & Copyrights
 Licensed under the [MIT License]('./LICENSE')
