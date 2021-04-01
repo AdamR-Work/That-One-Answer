@@ -15,10 +15,10 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
-            console.log('you logged in')
+            // console.log('you logged in')
             document.location.replace('/dashboard');
         } else {
-            console.log('you didnt log in')
+            // console.log('you didnt log in')
             alert(response.statusText);
         }
     }
@@ -43,10 +43,10 @@ async function signupFormHandler(event) {
         });
 
         if (response.ok) {
-            console.log('you signed up')
+            // console.log('you signed up')
             document.location.replace('/dashboard');
         } else {
-            console.log('you didnt sign up')
+            // console.log('you didnt sign up')
             alert(response.statusText);
         }
     }
