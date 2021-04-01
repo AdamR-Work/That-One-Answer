@@ -21,7 +21,7 @@
 * npm start
 * npm run seed
 ## Built with These Tools
-* JavaScript
+* JavaScript, HTML, [CSS Bootstrap](https://getbootstrap.com/)
 * [Node.js](https://nodejs.org/en/)
 * [Express](https://www.npmjs.com/package/express)
 * [Express-Session](https://www.npmjs.com/package/connect-session-sequelize)
