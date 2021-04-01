@@ -1,4 +1,3 @@
-
 {{#with answer}}
 <form class="text-dark bg-light" >
     <div class="input-group mb-3">
@@ -16,28 +15,28 @@
     <form class="input-group mb-3 step">
         <span class="input-group-text">Step {{@index}}</span>
         <span class="form-control">{{dataValues.step_text}}</span>
-       
-        <button data-typeId="deleteButton" class="btn btn-secondary btn-lg" id="{{dataValues.id}}" type="button" class="deleteStep">Delete Step</button>
+       {{#if ../../loggedIn}}
+        <button data-typeId="deleteButton" class="deleteStep btn btn-secondary btn-lg" id="{{dataValues.id}}" type="button">Delete Step</button>
+        {{/if}}
     </form>
+    
     {{/each}}
    </div>
+   {{#if ../loggedIn}}
     <form class="step-form input-group mb-3">
         <span class="input-group-text strong"><strong>Enter a new step</strong></span>
         <textarea id="new-step" name="step-text" class="form-control" aria-label="With textarea"></textarea>
-        <div>
         <button id="new-step-btn" class="btn btn-secondary btn-lg" type="submit">Add Step</button>
-    </div>
+   {{/if}}
     </form>
      
-    
-    {{#if loggedIn}} 
-                hello
-                {{/if}}   
 
-{{/with}}
+   
 
+{{#if ../loggedIn}}
 <script src="/javascript/add-step.js"></script>
 <script src="/javascript/delete-step.js"></script>
-
+{{/if}}
+{{/with}}
 
 
