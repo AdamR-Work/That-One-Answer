@@ -1,4 +1,4 @@
-<div id="wrapper">
+
 {{#with answer}}
 <form class="text-dark bg-light" >
     <div class="input-group mb-3">
@@ -11,7 +11,7 @@
         <span class="form-control">{{description}}</span>
     </div>
 </form>
-
+<div id="wrapper">
     {{#each steps}}
     <form class="input-group mb-3 step">
         <span class="input-group-text">Step {{@index}}</span>
@@ -26,16 +26,13 @@
     <form class="step-form input-group mb-3">
         <span class="input-group-text strong"><strong>Enter a new step</strong></span>
         <textarea id="new-step" name="step-text" class="form-control" aria-label="With textarea"></textarea>
-        <div>
+ 
         <button id="new-step-btn" class="btn btn-secondary btn-lg" type="submit">Add Step</button>
-    </div>
+
     </form>
      
     
-    {{#if loggedIn}} 
-                hello
-                {{/if}}   
-
+   
 {{/with}}
 
 <script src="/javascript/add-step.js"></script>
