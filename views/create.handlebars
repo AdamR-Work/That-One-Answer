@@ -1,0 +1,26 @@
+<form class="new">
+    <div class="input-group mb-3">
+
+        <span class="input-group-text" id="basic-addon1">Choose a category:</span>
+        <select class="form-control" name="formCats" id="new-answer-category">
+            {{#each categories}}
+            <option value={{this.dataValues.id}}>{{this.dataValues.category_name}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <span class="input-group-text">Title</span>
+        <textarea id="new-answer-title" class="form-control" aria-label="With textarea"></textarea>
+    </div>
+    <div class="mb-3">
+        <span class="input-group-text">Description</span>
+        <textarea id="new-answer-description" class="form-control" aria-label="With textarea"></textarea>
+    </div>
+    <div>
+        <button id="new-answer-btn" class="btn btn-secondary btn-lg" type="submit">Submit Answer</button>
+    </div>
+</form>
+
+
+<script src="/javascript/create-answer.js"></script>

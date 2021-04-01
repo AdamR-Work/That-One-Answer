@@ -1,0 +1,21 @@
+{{#if hbsObj.answers}}
+<div class="container">
+        <ol class="row answer-list">   
+            {{#each hbsObj.answers}}
+            <li class="card" style="max-width: 18rem;">
+                <div class="card-body">
+                    <a class="card-title nav-link" href="/answer/{{dataValues.id}}">
+                    <h5 class="card-title">{{dataValues.title}}</h5>
+                    </a>
+                    <p class="card-text">{{dataValues.description}} - Created on {{format_date dataValues.created_at}}</p>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+        {{else}}
+        <p>Hello world!</p>
+    </div>
+
+</div>
+{{/if}}
+
