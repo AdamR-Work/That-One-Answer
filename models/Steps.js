@@ -17,7 +17,8 @@ Steps.init(
       },
       step_number:{
           type: DataTypes.INTEGER,
-          allowNull:false,
+          //for future feature
+          // allowNull:false,
           defaultValue:0
       },
       user_id: {

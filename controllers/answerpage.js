@@ -1,6 +1,10 @@
 const router = require('express').Router();
-const {User, Answer, Comments,Steps, Category} = require("../models")
+const {User, Answer, Comments, Steps, Category} = require("../models")
 const fetch = require('node-fetch');
+const withAuth = require('../utils/auth');
+const sequelize = require('../config/connection');
+const { response } = require('express');
+
 
 // Find one Answer and all its data to push to HB
 router.get('/:id', (req, res) => {//change this to id
@@ -25,25 +29,42 @@ router.get('/:id', (req, res) => {//change this to id
             },
             {
                 model: Steps,
-                attributes:['step_text', 'step_number']
+                attributes:['id','step_text', 'step_number']
             },
             {
                 model: Category,
                 attributes: ['category_name']
             }
         ]
-    }).then(async response => {
-        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
-        const myQuote = await resQuote.json();
-
+    })
+    // .then(dbStepsData => {
         
-        let hbsObj = {
+    //     const steps = dbStepsData.map(step => step.get({ plain: true }));
+        
+    //      console.log(JSON.stringify(steps))
+    //      console.log(steps)
+    //     res.render('answer', { 
+    //         steps,
+    //         // answer: response.dataValues,
+    //         loggedIn: req.session.loggedIn,
+    //         quote: myQuote
+    //         });
+    //     })
+    //         .catch(err => {
+    //             console.log(err);
+    //             res.status(500).json(err);
+    //           });
+    //       });
+          .then(async response => {
+        const resQuote = await fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        const myQuote = await resQuote.json(); 
+        const hbsObj = {
             answer: response.dataValues,
             loggedIn: req.session.loggedIn,
             quote: myQuote
         };
         
-    //    console.log(hbsObj)
+        console.log(JSON.stringify(hbsObj))
 
         res.render("answer", hbsObj);
 

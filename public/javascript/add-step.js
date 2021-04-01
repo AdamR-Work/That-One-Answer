@@ -1,15 +1,14 @@
-
 // ADD STEP
 async function addStepsFormHandler(event) {
     event.preventDefault();
   
-    const step_text = document.querySelector('#new-step').value.trim();
+    const step_text = document.querySelector('textarea[name="step-text"]').value.trim();
     const answer_id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
-    console.log(step_text + " -- " + answer_id);
+    // console.log(step_text + " -- " + answer_id);
     if (step_text) {
-      const response = await fetch('/api/step', {
+      const response = await fetch(`/api/step`, {
         method: 'POST',
         body: JSON.stringify({
           answer_id,
@@ -21,12 +20,13 @@ async function addStepsFormHandler(event) {
       });
   
       if (response.ok) {
-        // document.location.reload();
+        // document.location.replace('/answer/'+answer_id);
+        document.location.reload();
       } else {
         alert(response.statusText);
       }
     }
-    console.log('made it here');
+    // console.log('made it here');
 }
 
   // ADD COMMENT
@@ -61,4 +61,7 @@ async function addStepsFormHandler(event) {
   
   // document.querySelector('.new-comment').addEventListener('commit-comment', addCommentsFormHandler);
   
-  document.querySelector('#new-step-btn').addEventListener('submit', addStepsFormHandler);
+
+
+  
+  document.querySelector('.step-form').addEventListener('submit', addStepsFormHandler);

@@ -1,3 +1,4 @@
+// For future feature of adding pics to steps
 function addSomePics(event){
 
     document.querySelector("#postImage").addEventListener("change", function(e){

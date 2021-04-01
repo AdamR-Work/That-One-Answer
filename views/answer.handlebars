@@ -1,3 +1,4 @@
+<div id="wrapper">
 {{#with answer}}
 <form class="text-dark bg-light" >
     <div class="input-group mb-3">
@@ -9,36 +10,36 @@
         <span class="input-group-text">Description</span>
         <span class="form-control">{{description}}</span>
     </div>
+</form>
 
     {{#each steps}}
-    <div class="input-group mb-3">
+    <form class="input-group mb-3 step">
         <span class="input-group-text">Step {{@index}}</span>
         <span class="form-control">{{dataValues.step_text}}</span>
-    </div>
+       
+        <button data-typeId="deleteButton" class="deleteStep btn btn-secondary btn-lg" id="{{dataValues.id}}" type="button">Delete Step</button>
+        
+    </form>
+    
     {{/each}}
-
-    <div class="input-group mb-3 step-form">
+   </div>
+    <form class="step-form input-group mb-3">
         <span class="input-group-text strong"><strong>Enter a new step</strong></span>
         <textarea id="new-step" name="step-text" class="form-control" aria-label="With textarea"></textarea>
-    </div>
-
-    <div>
+        <div>
         <button id="new-step-btn" class="btn btn-secondary btn-lg" type="submit">Add Step</button>
     </div>
+    </form>
+     
     
-    {{#if hbsObj.loggedIn}} 
+    {{#if loggedIn}} 
                 hello
                 {{/if}}   
-</form>
+
 {{/with}}
 
 <script src="/javascript/add-step.js"></script>
+<script src="/javascript/delete-step.js"></script>
 
 
 
-
-                {{!-- <form class="new-comment">
-                 <span class="comment_text">{{dataValues.comment_text}}</span>
-                <textarea class="" name="new-comment"></textarea>
-                <button type="commit-comment">Comment</button>
-                </form> --}}

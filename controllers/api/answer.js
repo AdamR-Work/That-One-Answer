@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
-const { Answer, User, Category, Comments } = require('../../models');
+const { Answer, User, Category, Comments, Steps } = require('../../models');
 
 //.../api/answers ALL ANSWERs
 router.get('/', (req, res) => {
@@ -75,6 +75,10 @@ router.get('/:id', (req, res) => {
             {
                 model: Category,
                 attributes: ['category_name']
+            },
+            {
+                model: Steps,
+                attributes:['step_text', 'id','created_at']
             }
         ]
     })

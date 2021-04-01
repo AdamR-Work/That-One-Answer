@@ -75,11 +75,12 @@ router.get('/:id', (req, res) => {
 });
 // Steps create a new one
 router.post('/', withAuth, (req, res) => {
-    console.log("wlr ---" + req.body);
+    // console.log("wlr ---" + req.body);
     Steps.create(
         {
             answer_id: req.body.answer_id,
             step_text: req.body.step_text,
+            // for future feature
             step_number: req.body.step_number,
             user_id: req.session.user_id
             
@@ -91,7 +92,7 @@ router.post('/', withAuth, (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-    console.log("wlr ---" + req.body);
+    // console.log("wlr ---" + req.body);
 });
 
 
