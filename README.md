@@ -47,7 +47,7 @@
 ## Wireframe
 * [Mock Up User Profile creation](wireframe/images/Webpage-User-profile-creation.png)
 * [Mock Up Category User page](wireframe/images/Webpage-Category-User.png)
-* [Mock Up Categories page](wireframe/images/Webpage-Categories.pgn)
+* [Mock Up Categories page](wireframe/images/Webpage-Categories.png)
 * [Example of Database Wireframe](wireframe/images/dbwireframe.png)
   
 ## Screenshots
