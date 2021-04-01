@@ -13,7 +13,7 @@
 * Simple web app that tries to give you that one answer you need to solve/do something as a Full Stack Web Developer.
 
 ## Installation Instructions
-* Visit [That One Answer on Heroku](INSERT LINK)
+* Visit [That One Answer on Heroku](https://salty-spire-96574.herokuapp.com/)
 ### Local installation:
 * npm install
 * use ./assets/samples/__sample.env file to setup connection
