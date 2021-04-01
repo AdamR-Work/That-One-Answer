@@ -18,6 +18,7 @@
        {{#if ../../loggedIn}}
         <button data-typeId="deleteButton" class="deleteStep btn btn-secondary btn-lg" id="{{dataValues.id}}" type="button">Delete Step</button>
         {{/if}}
+
     </form>
     
     {{/each}}
@@ -26,12 +27,14 @@
     <form class="step-form input-group mb-3">
         <span class="input-group-text strong"><strong>Enter a new step</strong></span>
         <textarea id="new-step" name="step-text" class="form-control" aria-label="With textarea"></textarea>
+
         <button id="new-step-btn" class="btn btn-secondary btn-lg" type="submit">Add Step</button>
    {{/if}}
     </form>
      
 
    
+
 
 {{#if ../loggedIn}}
 <script src="/javascript/add-step.js"></script>
